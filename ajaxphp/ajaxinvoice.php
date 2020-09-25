@@ -240,7 +240,7 @@ if(isset($_POST['invoice_entry'])){
         }
 
     }else{
-        echo "<script>alert('Product Out Of Stock$count_stock')</script>";
+        echo "<script>alert('Product Out Of Stock$count_carton')</script>";
         // echo "<script>window.open('../index.php?generate_invoice','_self')</script>";
     }
 }else{
