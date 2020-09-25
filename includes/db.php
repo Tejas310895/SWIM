@@ -1,6 +1,6 @@
 <?php 
 
-$con = mysqli_connect('localhost:3308','root','','swaf');
+$con = mysqli_connect('localhost','u708087849_swaf','Silverwrap@11','u708087849_swaf');
 
 // if($con){
 //     echo " connected ";
