@@ -82,7 +82,7 @@ if(isset($_GET['invoice_no'])){
                     .pagebreak { page-break-before: always; } 
                     }
                     @page {
-                        margin: 1%;
+                        margin: 2%;
                             }
   </style>
     <script>
@@ -232,7 +232,7 @@ if(isset($_GET['invoice_no'])){
                     $get_inc_count = "select * from invoice_products where invoice_no='$invoice_no'";
                     $run_inc_count = mysqli_query($con,$get_inc_count);
                     $inc_count = mysqli_num_rows($run_inc_count);
-                    $req_count = 13-$inc_count;
+                    $req_count = 10-$inc_count;
 
                     if($req_count>1){
                         
@@ -691,7 +691,7 @@ if(isset($_GET['invoice_no'])){
                     $get_inc_count = "select * from invoice_products where invoice_no='$invoice_no'";
                     $run_inc_count = mysqli_query($con,$get_inc_count);
                     $inc_count = mysqli_num_rows($run_inc_count);
-                    $req_count = 13-$inc_count;
+                    $req_count = 10-$inc_count;
 
                     if($req_count>1){
                         
@@ -1112,7 +1112,7 @@ if(isset($_GET['invoice_no'])){
                     $get_inc_count = "select * from invoice_products where invoice_no='$invoice_no'";
                     $run_inc_count = mysqli_query($con,$get_inc_count);
                     $inc_count = mysqli_num_rows($run_inc_count);
-                    $req_count = 13-$inc_count;
+                    $req_count = 10-$inc_count;
 
                     if($req_count>1){
                         
