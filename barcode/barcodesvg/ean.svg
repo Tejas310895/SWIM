@@ -1,0 +1,6 @@
+<svg class="barcode"
+  jsbarcode-format="ean13"
+  jsbarcode-value="123456789012"
+  jsbarcode-textmargin="0"
+  jsbarcode-fontoptions="bold">
+</svg>
