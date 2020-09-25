@@ -130,7 +130,7 @@ if(isset($_POST['invoice_entry'])){
 
     if($count_invoice==0){
 
-    if($count_stock==$count_carton){
+    if($count_stock=$count_carton){
 
     if(!empty($carton_idArr)){
         for($i = 0; $i < count($carton_idArr); $i++){
