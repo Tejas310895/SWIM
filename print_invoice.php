@@ -82,7 +82,7 @@ if(isset($_GET['invoice_no'])){
                     .pagebreak { page-break-before: always; } 
                     }
                     @page {
-                        margin: 2%;
+                        margin: 1%;
                             }
   </style>
     <script>

@@ -70,7 +70,7 @@ if(isset($_GET['print_id'])){
             {
                 size: 100mm 100mm;
                 /* size: portrait; */
-                margin: 1mm 0mm 0mm 0mm;
+                margin: 2mm 0mm 0mm 0mm;
             }
             .pagebreak { page-break-before: always; }
             }
