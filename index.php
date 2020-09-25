@@ -187,6 +187,12 @@ include ("includes/db.php");
             
           }
 
+          if(isset($_GET['create_partner'])){
+                    
+            include("create_partner.php");
+            
+          }
+
           if(isset($_GET['edit_partner'])){
                     
             include("edit_partner.php");
