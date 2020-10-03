@@ -68,7 +68,7 @@ if(!isset($_SESSION['admin_user'])){
                                         <div class="form-group row">
                                             <label class="col-sm-12 col-form-label" id="label_qty">Due Date</label>
                                             <div class="col-sm-12">
-                                                <input type="date" class="form-control" name="due_date" id="due_date" placeholder="" required/>
+                                                <input type="date" class="form-control" name="due_date" id="due_date" placeholder="" />
                                             </div>
                                         </div>
                                     </div>
@@ -83,7 +83,7 @@ if(!isset($_SESSION['admin_user'])){
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label" id="label_qty">Transporter Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="transporter_title" id="transporter_title" placeholder="" required/>
+                                                <input type="text" class="form-control" name="transporter_title" id="transporter_title" placeholder="" />
                                             </div>
                                         </div>
                                     </div>
@@ -91,7 +91,7 @@ if(!isset($_SESSION['admin_user'])){
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label" id="label_qty">Vehicle Number</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="vehicle_no" id="vehicle_no" placeholder="" required/>
+                                                <input type="text" class="form-control" name="vehicle_no" id="vehicle_no" placeholder="" />
                                             </div>
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@ if(!isset($_SESSION['admin_user'])){
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label" id="label_qty">E-Way Bill Number</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="eway_no" id="eway_no" placeholder="" required/>
+                                                <input type="text" class="form-control" name="eway_no" id="eway_no" placeholder="" />
                                             </div>
                                         </div>
                                     </div>
