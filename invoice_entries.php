@@ -26,9 +26,7 @@ if(!isset($_SESSION['admin_user'])){
                     <tr>
                     <th>Sl.No</th>
                     <th>Company Details</th>
-                    <th>Transporter Details</th>
                     <th>Customer</th>
-                    <th>Shipped To</th>
                     <th>Action</th>
                     </tr>
                 </thead>
@@ -81,9 +79,6 @@ if(!isset($_SESSION['admin_user'])){
                         Shipping Date :<?php echo date("d-M-Y", strtotime($ship_date)); ?>
                     </td>
                     <td>
-
-                    </td>
-                    <td>
                         <h5>Billed To</h5><br>
                         <?php echo $billed_title; ?><br>
                         <?php echo $billed_contact; ?><br>
@@ -98,8 +93,6 @@ if(!isset($_SESSION['admin_user'])){
                         <?php echo $ship_state; ?>
                         (State Code :<?php echo $ship_state_code; ?>) <br>
                         <?php echo $ship_gst; ?>
-                    </td>
-                    <td>
                     </td>
                     <td>
                         <a href="print_invoice.php?invoice_no=<?php echo $invoice_no; ?>" target="_blank" class="btn btn-primary">Print</a><br>
