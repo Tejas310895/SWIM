@@ -27,9 +27,10 @@ if(!isset($_SESSION['admin_user'])){
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Shop Name</label>
+                                    <label class="col-sm-3 col-form-label">Supplier Name</label>
                                     <div class="col-sm-9">
                                     <select class="form-control" name="vendor_id" id="vendor_id">
+                                    <option disabled selected value>Choose the Supplier</option>
                                         <?php 
                                         
                                         $get_vendors = "select * from vendors";

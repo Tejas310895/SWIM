@@ -22,10 +22,10 @@ if(!isset($_SESSION['admin_user'])){
                         <div class="card-body">
                             <h4 class="card-title">Company Details</h4>
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Company Name</label>
-                                            <div class="col-sm-9">
+                                            <label class="col-sm-12 col-form-label">Company Name</label>
+                                            <div class="col-sm-12">
                                             <select class="form-control" name="partner_id" id="partner_id" required>
                                             <option disabled selected value>Choose the Partner</option>
                                             <?php 
@@ -45,23 +45,31 @@ if(!isset($_SESSION['admin_user'])){
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label" id="label_qty">Invoice Number</label>
-                                        <div class="col-sm-3">
+                                        <label class="col-sm-12 col-form-label" id="label_qty">Invoice Number</label>
+                                        <div class="col-sm-4">
                                             <input type="text" class="form-control" name="invoice_pre" id="invoice_pre" value="" placeholder="" required/>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control" name="invoice_suf" id="invoice_suf" value="" required/>
                                         </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label" id="label_qty">Invoice Date</label>
-                                        <div class="col-sm-9">
+                                        <label class="col-sm-12 col-form-label" id="label_qty">Invoice Date</label>
+                                        <div class="col-sm-12">
                                             <input type="date" class="form-control" name="invoice_date" id="invoice_date" required/>
                                         </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group row">
+                                            <label class="col-sm-12 col-form-label" id="label_qty">Due Date</label>
+                                            <div class="col-sm-12">
+                                                <input type="date" class="form-control" name="due_date" id="due_date" placeholder="" required/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -251,19 +259,21 @@ if(!isset($_SESSION['admin_user'])){
                                         <?php
 
                                         echo "<option disabled selected value>Product</option>";
-                                        $get_carton = "select * from cartons";
+                                        $get_carton = "select * from cartons where carton_stock>'1'";
                                         $run_carton = mysqli_query($con,$get_carton);
                                         while($row_carton=mysqli_fetch_array($run_carton)){
 
                                         $carton_id = $row_carton['carton_id'];
                                         $carton_title = $row_carton['carton_title'];
+                                        $carton_stock = $row_carton['carton_stock'];
 
-                                        echo "<option value='$carton_id'>$carton_title</option>";
+                                        echo "<option value='$carton_id'>$carton_title ($carton_stock-Instock)</option>";
 
                                         }
 
                                         ?>
                                         </select>
+                                        <label for=""></label>
                                         <input type="text" name="carton_qty[]" id="carton_qty" class="form-control" placeholder="Quantity" required/>
                                         <input type="text" name="unit_rate[]" id="unit_rate" class="form-control" placeholder="Unit Rate" required/>
                                         <input type="text" name="discount[]" id="discount" class="form-control" placeholder="Discount %" />
@@ -279,21 +289,11 @@ if(!isset($_SESSION['admin_user'])){
                                 </div>
                             </div>
                         </div>
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label" id="label_qty">Payment Due Date</label>
-                                            <div class="col-sm-9">
-                                                <input type="date" class="form-control" name="due_date" id="due_date" placeholder="" required/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="submit" id="invoice_entry" name="invoice_entry" class="btn btn-success mr-2 btn-lg float-right py-2"><h5>Generate Invoice</h5></button>
-                                    </div>
-                                </div>  
+                        <div class="row">
+                            <div class="col-md-6">
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" id="invoice_entry" name="invoice_entry" class="btn btn-success mr-2 btn-lg float-right py-2"><h5>Generate Invoice</h5></button>
                             </div>
                         </div>
                         <!-- <div class="row">
@@ -308,14 +308,15 @@ if(!isset($_SESSION['admin_user'])){
                         <?php
 
                         echo "<option disabled selected value>Product</option>";
-                        $get_carton = "select * from cartons";
+                        $get_carton = "select * from cartons where carton_stock>'1'";
                         $run_carton = mysqli_query($con,$get_carton);
                         while($row_carton=mysqli_fetch_array($run_carton)){
 
                         $carton_id = $row_carton['carton_id'];
                         $carton_title = $row_carton['carton_title'];
+                        $carton_stock = $row_carton['carton_stock'];
 
-                        echo "<option value='$carton_id'>$carton_title</option>";
+                        echo "<option value='$carton_id'>$carton_title ($carton_stock-Instock)</option>";
 
                         }
 
@@ -340,5 +341,10 @@ if(!isset($_SESSION['admin_user'])){
     <script src="jquery/dist/jquery.min.js"></script>
     <script src="js/vendor.js"></script>
     <script src="js/script.js"></script>
-                    <?php } ?>
+    <script>
+    $(document).on("keydown", "form", function(event) { 
+        return event.key != "Enter";
+    });
+    </script>
+<?php } ?>
 

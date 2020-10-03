@@ -34,7 +34,7 @@ if(!isset($_SESSION['admin_user'])){
                 <tbody>
                     <?php 
                     
-                    $get_product = "select * from products";
+                    $get_product = "select * from products order by product_id desc";
 
                     $run_product = mysqli_query($con,$get_product);
 

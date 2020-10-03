@@ -27,7 +27,7 @@ if(!isset($_SESSION['admin_user'])){
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Partner Name</label>
+                                <label class="col-sm-3 col-form-label">Company Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="partner_title" id="partner_title" required/>
                                 </div>
@@ -35,7 +35,7 @@ if(!isset($_SESSION['admin_user'])){
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Partner Contact</label>
+                                <label class="col-sm-3 col-form-label">Company Contact</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="partner_contact" id="partner_contact" required/>
                                 </div>
@@ -45,7 +45,7 @@ if(!isset($_SESSION['admin_user'])){
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Partner Email</label>
+                                <label class="col-sm-3 col-form-label">Company Email</label>
                                 <div class="col-sm-9">
                                     <input type="email" class="form-control" name="partner_email" id="partner_email" required/>
                                 </div>
@@ -53,7 +53,7 @@ if(!isset($_SESSION['admin_user'])){
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Partner Address</label>
+                                <label class="col-sm-3 col-form-label">Company Address</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="partner_address" id="partner_address" required/>
                                 </div>

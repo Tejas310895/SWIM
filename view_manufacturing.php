@@ -36,7 +36,7 @@ if(!isset($_SESSION['admin_user'])){
                 <tbody>
                 <?php 
                 
-                $get_manufacturing = "select * from manufacturing";
+                $get_manufacturing = "select * from manufacturing order by manufacturing_id desc";
                 $run_manufacturing = mysqli_query($con,$get_manufacturing);
                 $counter = 0;
                 while($row_manufacturing=mysqli_fetch_array($run_manufacturing)){

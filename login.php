@@ -58,7 +58,7 @@ include("includes/db.php");
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-4 mt-5 login-card">
+            <div class="col-lg-4 col-sm-12 mt-5 login-card">
                 <div class="card p-5">
                     <div class="card-head">
                         <h5 class="text-center">LOGIN HERE</h5>

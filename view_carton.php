@@ -34,7 +34,7 @@ if(!isset($_SESSION['admin_user'])){
                 <tbody>
                     <?php 
                     
-                    $get_carton = "select * from cartons";
+                    $get_carton = "select * from cartons order by carton_id desc";
 
                     $run_carton = mysqli_query($con,$get_carton);
 

@@ -36,7 +36,7 @@ if(!isset($_SESSION['admin_user'])){
                 <tbody>
                 <?php 
                     
-                    $get_partner = "SELECT * FROM partners";
+                    $get_partner = "SELECT * FROM partners order by partner_id desc";
                     $run_partner = mysqli_query($con,$get_partner);
                     $counter = 0;
                     while($row_partner=mysqli_fetch_array($run_partner)){

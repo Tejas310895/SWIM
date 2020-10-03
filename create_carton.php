@@ -38,7 +38,7 @@ if(!isset($_SESSION['admin_user'])){
                                     <label class="col-sm-3 col-form-label">Product Name</label>
                                     <div class="col-sm-9">
                                     <select class="form-control" name="product_id" id="product_id" required>
-                                    <option disabled selected value>Choose the Vendor</option>
+                                    <option disabled selected value>Choose the Product</option>
                                     <?php 
                                         
                                         $get_vendors = "select * from products";

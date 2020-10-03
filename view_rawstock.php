@@ -37,7 +37,7 @@ if(!isset($_SESSION['admin_user'])){
                 <tbody>
                 <?php 
                     
-                    $get_raw = "SELECT * FROM raw_items";
+                    $get_raw = "SELECT * FROM raw_items order by item_id desc";
                     $run_raw = mysqli_query($con,$get_raw);
                     $counter = 0;
                     while($row_raw=mysqli_fetch_array($run_raw)){

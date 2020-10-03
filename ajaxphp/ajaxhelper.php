@@ -34,5 +34,4 @@ if(isset($_POST['vendor_id'])){
     }
 }
 
-
 ?>

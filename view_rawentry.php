@@ -38,7 +38,7 @@ if(!isset($_SESSION['admin_user'])){
                 <tbody>
                 <?php 
                     
-                    $get_entry = "SELECT * FROM raw_entry";
+                    $get_entry = "SELECT * FROM raw_entry order by entry_id desc";
                     $run_entry = mysqli_query($con,$get_entry);
                     $counter = 0;
                     while($row_entry=mysqli_fetch_array($run_entry)){

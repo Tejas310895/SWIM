@@ -99,7 +99,8 @@ if(!isset($_SESSION['admin_user'])){
                         <?php echo $ship_gst; ?>
                     </td>
                     <td>
-                        <a href="print_invoice.php?invoice_no=<?php echo $invoice_no; ?>" target="_blank" class="btn btn-primary">Print</a>
+                        <a href="print_invoice.php?invoice_no=<?php echo $invoice_no; ?>" target="_blank" class="btn btn-primary">Print</a><br>
+                        <a href="delete_invoice.php?invoice_no=<?php echo $invoice_no; ?>" class="btn btn-danger mt-2" onclick="return confirm('Are you sure?')">Delete</a>
                     </td>
                     </tr>
                     <?php } ?>

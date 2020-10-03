@@ -48,9 +48,10 @@ if(isset($_GET['edit_rawstock'])){
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Shop Name</label>
+                                    <label class="col-sm-3 col-form-label">Supplier Name</label>
                                     <div class="col-sm-9">
                                     <select class="form-control" name="vendor_id" id="vendor_id">
+                                    <option disabled selected value>Choose the Supplier</option>
                                     <option value="<?php echo $vendor_id; ?>"><?php echo $vendor_title; ?></option>
                                         <?php 
                                         

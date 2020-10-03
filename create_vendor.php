@@ -27,7 +27,7 @@ if(!isset($_SESSION['admin_user'])){
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Shop Name</label>
+                                <label class="col-sm-3 col-form-label">Supplier Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="shop_title" id="shop_title" required/>
                                 </div>

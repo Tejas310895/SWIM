@@ -27,7 +27,7 @@ if(!isset($_SESSION['admin_user'])){
         <select class="form-control" name="carton_id">
             <?php
             
-                echo "<option disabled selected value>Choose the raw Item</option>";
+                echo "<option disabled selected value>Choose the Carton</option>";
                 $get_carton = "select * from cartons";
                 $run_carton = mysqli_query($con,$get_carton);
                 while($row_carton=mysqli_fetch_array($run_carton)){

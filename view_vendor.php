@@ -43,7 +43,7 @@ if(!isset($_SESSION['admin_user'])){
                 <tbody>
                     <?php 
                     
-                    $get_vendor = "SELECT * FROM vendors";
+                    $get_vendor = "SELECT * FROM vendors order by vendor_id desc";
                     $run_vendors = mysqli_query($con,$get_vendor);
                     $counter = 0;
                     while($row_vendor=mysqli_fetch_array($run_vendors)){

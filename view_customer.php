@@ -36,7 +36,7 @@ if(!isset($_SESSION['admin_user'])){
                 <tbody>
                 <?php 
                     
-                    $get_customer = "SELECT * FROM customers";
+                    $get_customer = "SELECT * FROM customers order by customer_id desc";
                     $run_customer = mysqli_query($con,$get_customer);
                     $counter = 0;
                     while($row_customer=mysqli_fetch_array($run_customer)){

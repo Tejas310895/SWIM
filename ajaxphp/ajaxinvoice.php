@@ -120,8 +120,8 @@ if(isset($_POST['invoice_entry'])){
                 }
 
             }
+            $count_carton=++$count_carton;
         }
-        $count_carton=++$count_carton;
     }
 
     $get_invoice = "select * from invoice where invoice_no='$invoice_no'";
@@ -130,7 +130,7 @@ if(isset($_POST['invoice_entry'])){
 
     if($count_invoice==0){
 
-    if($count_stock=$count_carton){
+    if($count_stock==$count_carton){
 
     if(!empty($carton_idArr)){
         for($i = 0; $i < count($carton_idArr); $i++){
@@ -236,16 +236,16 @@ if(isset($_POST['invoice_entry'])){
             echo "<script>window.open('../index.php?invoice_entries','_self')</script>";    
         }else{
             echo "<script>alert('Invoice Generation Failed')</script>";
-            // echo "<script>window.open('../index.php?invoice_entries','_self')</script>";    
+            echo "<script>window.history.back();</script>";
         }
 
     }else{
         echo "<script>alert('Product Out Of Stock')</script>";
-        // echo "<script>window.open('../index.php?generate_invoice','_self')</script>";
+        echo "<script>window.history.back();</script>";
     }
 }else{
     echo "<script>alert('Invoice Number Already Used')</script>";
-    // echo "<script>window.open('../index.php?generate_invoice','_self')</script>";
+    echo "<script>window.history.back();</script>";
 }
 }
 
