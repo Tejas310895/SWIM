@@ -37,8 +37,8 @@ if(!isset($_SESSION['admin_user'])){
                         </div>
                       </div>
                       <div class="col-3">
-                        <div class="icon icon-box-<?php if($item_stock<100){echo"danger blink";}else{echo"success";} ?>">
-                          <span class="mdi mdi-arrow-<?php if($item_stock<100){echo"bottom-left";}else{echo"top-right";} ?> icon-item"></span>
+                        <div class="icon icon-box-<?php if($item_stock<500){echo"danger blink";}else{echo"success";} ?>">
+                          <span class="mdi mdi-arrow-<?php if($item_stock<500){echo"bottom-left";}else{echo"top-right";} ?> icon-item"></span>
                         </div>
                       </div>
                     </div>
