@@ -25,7 +25,6 @@ if(!isset($_SESSION['admin_user'])){
                 <thead>
                     <tr>
                     <th>Sl.No</th>
-                    <th>Vendor Name</th>
                     <th>Item Name</th>
                     <th>Measure Unit</th>
                     <th>Available Stock</th>
@@ -44,22 +43,13 @@ if(!isset($_SESSION['admin_user'])){
 
                         $counter = ++$counter;
                         $item_id = $row_raw['item_id'];
-                        $vendor_id = $row_raw['vendor_id'];
                         $item_name = $row_raw['item_name'];
                         $item_unit = $row_raw['item_unit'];
                         $unit_cost = $row_raw['unit_cost'];
-                        $item_stock = $row_raw['item_stock'];
-
-                        $get_shop = "select * from vendors where vendor_id=$vendor_id";
-                        $run_shop = mysqli_query($con,$get_shop);
-                        $row_shop = mysqli_fetch_array($run_shop);
-
-                        $shop_title = $row_shop['shop_title'];
-                    
+                        $item_stock = $row_raw['item_stock'];                    
                     ?>
                     <tr>
                     <td><?php echo $counter; ?></td>
-                    <td><?php echo $shop_title; ?></td>
                     <td><?php echo $item_name; ?></td>
                     <td><?php echo $item_unit; ?></td>
                     <td><?php echo round($item_stock, 2); ?></td>

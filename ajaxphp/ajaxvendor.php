@@ -48,7 +48,7 @@ if(isset($_POST['add_vendor'])){
 }
 
 if(isset($_POST['add_raw'])){
-    $vendor_id = $_POST['vendor_id'];
+    $item_type = $_POST['item_type'];
     $item_name = $_POST['item_name'];
     $item_unit = $_POST['item_unit'];
     $unit_cost = $_POST['unit_cost'];
@@ -58,7 +58,7 @@ if(isset($_POST['add_raw'])){
 
     $today = date("Y-m-d H:i:s");
 
-    $insert_raw = "insert into raw_items (vendor_id,
+    $insert_raw = "insert into raw_items (item_type,
                                         item_name,
                                         item_unit,
                                         unit_cost,
@@ -67,7 +67,7 @@ if(isset($_POST['add_raw'])){
                                         item_created_at,
                                         item_updated_at)
                                         values
-                                        ('$vendor_id',
+                                        ('$item_type',
                                         '$item_name',
                                         '$item_unit',
                                         '$unit_cost',

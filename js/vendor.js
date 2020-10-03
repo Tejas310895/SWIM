@@ -38,7 +38,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         var add_raw = $(this).attr("id");
-        var vendor_id = $("#vendor_id").val();
+        var item_type = $("#item_type").val();
         var item_name = $("#item_name").val();
         var item_unit = $("#item_unit").val();
         var unit_cost = $("#unit_cost").val();
@@ -48,7 +48,7 @@ $(document).ready(function () {
             type: "POST",
             url: "ajaxphp/ajaxvendor.php",
             data: {"add_raw": add_raw,
-            "vendor_id": vendor_id,
+            "item_type": item_type,
             "item_name": item_name,
             "item_unit": item_unit,
             "unit_cost": unit_cost,
@@ -79,20 +79,20 @@ $(document).ready(function () {
         
         });
         
-        $('#vendor_id').change(function (e) { 
+        // $('#vendor_id').change(function (e) { 
         
-        var vendor_id = $("#vendor_id").val();
+        // var vendor_id = $("#vendor_id").val();
         
-        $.ajax({
-            type: "post",
-            url: "ajaxphp/ajaxhelper.php",
-            data: {"vendor_id": vendor_id},
-            success: function (response) {
-                $('#item_id').html(response);
-            }
-        });
+        // $.ajax({
+        //     type: "post",
+        //     url: "ajaxphp/ajaxhelper.php",
+        //     data: {"vendor_id": vendor_id},
+        //     success: function (response) {
+        //         $('#item_id').html(response);
+        //     }
+        // });
         
-        });
+        // });
 
     $('#raw_entry').click(function (e) { 
         e.preventDefault();

@@ -27,32 +27,17 @@ if(!isset($_SESSION['admin_user'])){
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Supplier Name</label>
-                                    <div class="col-sm-9">
-                                    <select class="form-control" name="vendor_id" id="vendor_id">
-                                    <option disabled selected value>Choose the Supplier</option>
-                                        <?php 
-                                        
-                                        $get_vendors = "select * from vendors";
-                                        $run_vendors = mysqli_query($con,$get_vendors);
-                                        while($row_vendors=mysqli_fetch_array($run_vendors)){
-                                        
-                                        $vendor_id = $row_vendors['vendor_id'];
-                                        $shop_title = $row_vendors['shop_title'];
-                                        ?>
-                                        <option value="<?php echo $vendor_id; ?>"><?php echo $shop_title; ?></option>
-                                        <?php 
-                                        }
-                                        ?>
-                                    </select>
-                                    </div>
+                                <label class="col-sm-3 col-form-label">Item Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="item_name" id="item_name" required/>
+                                </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Item Name</label>
+                                <label class="col-sm-3 col-form-label">Item Type</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="item_name" id="item_name" required/>
+                                    <input type="text" class="form-control" name="item_type" id="item_type" required/>
                                 </div>
                                 </div>
                             </div>

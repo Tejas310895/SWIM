@@ -54,6 +54,18 @@ if(!isset($_SESSION['admin_user'])){
                                     <div class="col-sm-9">
                                     <select class="form-control" name="item_id" id="item_id" required>
                                     <option disabled selected value>Select the Supplier First</option>
+                                    <?php 
+                                    
+                                    $get_items = "select * from raw_items";
+                                    $run_items = mysqli_query($con,$get_items);
+                                    while($row_items=mysqli_fetch_array($run_items)){
+                                    
+                                    $item_id = $row_items['item_id'];
+                                    $item_name = $row_items['item_name'];
+
+                                    echo "<option value='$item_id'>$item_name</option>";
+                                    }
+                                    ?>
                                     </select>
                                     </div>
                                 </div>
