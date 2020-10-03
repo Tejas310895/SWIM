@@ -53,7 +53,7 @@ if(!isset($_SESSION['admin_user'])){
                                     <label class="col-sm-3 col-form-label">Item Name</label>
                                     <div class="col-sm-9">
                                     <select class="form-control" name="item_id" id="item_id" required>
-                                    <option disabled selected value>Select the vendor First</option>
+                                    <option disabled selected value>Select the Supplier First</option>
                                     </select>
                                     </div>
                                 </div>
