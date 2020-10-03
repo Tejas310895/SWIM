@@ -333,7 +333,7 @@ if(isset($_POST['invoice_pre'])){
 
     $invoice_no_bef = $row_partner_count['invoice_no'];
 
-    $invoice_no_aft = substr($invoice_no_bef, -1, 3);
+    $invoice_no_aft = substr($invoice_no_bef, -3, 3);
 
     $toyear = $in_year+1;
 
