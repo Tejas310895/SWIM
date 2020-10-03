@@ -85,7 +85,7 @@ if(!isset($_SESSION['admin_user'])){
                         <?php echo $billed_address; ?><br>
                         <?php echo $billed_state; ?>
                         (State Code :<?php echo $billed_state_code; ?>) <br>
-                        <?php echo $billed_gst; ?> <br>
+                        <?php echo $billed_gst; ?> <br> <br>
                         <h5>Shipped To</h5><br>
                         <?php echo $ship_title; ?><br>
                         <?php echo $ship_contact; ?><br>
