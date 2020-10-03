@@ -27,7 +27,7 @@ if(!isset($_SESSION['admin_user'])){
                     <th>Sl.No</th>
                     <th>Company Details</th>
                     <th>Transporter Details</th>
-                    <th>Billed To</th>
+                    <th>Customer</th>
                     <th>Shipped To</th>
                     <th>Action</th>
                     </tr>
@@ -74,29 +74,32 @@ if(!isset($_SESSION['admin_user'])){
                     <td>
                         Invoice Date : <?php echo date("d-M-Y", strtotime($invoice_date)); ?><br>
                         Invoice Number : <?php echo $invoice_no; ?><br>
-                        Company : <?php echo $partner_title; ?>
-                    </td>
-                    <td>
+                        Company : <?php echo $partner_title; ?> <br>
                         Transporter Name : <?php echo $transporter_title; ?><br>
                         Vehicle Number : <?php echo $vehicle_no; ?><br>
                         E Way Bill : <?php echo $eway_no; ?><br>
                         Shipping Date :<?php echo date("d-M-Y", strtotime($ship_date)); ?>
                     </td>
                     <td>
+
+                    </td>
+                    <td>
+                        <h5>Billed To</h5><br>
                         <?php echo $billed_title; ?><br>
                         <?php echo $billed_contact; ?><br>
                         <?php echo $billed_address; ?><br>
                         <?php echo $billed_state; ?>
                         (State Code :<?php echo $billed_state_code; ?>) <br>
-                        <?php echo $billed_gst; ?>
-                    </td>
-                    <td>
+                        <?php echo $billed_gst; ?> <br>
+                        <h5>Shipped To</h5><br>
                         <?php echo $ship_title; ?><br>
                         <?php echo $ship_contact; ?><br>
                         <?php echo $ship_address; ?><br>
                         <?php echo $ship_state; ?>
                         (State Code :<?php echo $ship_state_code; ?>) <br>
                         <?php echo $ship_gst; ?>
+                    </td>
+                    <td>
                     </td>
                     <td>
                         <a href="print_invoice.php?invoice_no=<?php echo $invoice_no; ?>" target="_blank" class="btn btn-primary">Print</a><br>
