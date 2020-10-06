@@ -259,7 +259,7 @@ if(!isset($_SESSION['admin_user'])){
                                         <?php
 
                                         echo "<option disabled selected value>Product</option>";
-                                        $get_carton = "select * from cartons where carton_stock>'1'";
+                                        $get_carton = "select * from cartons where carton_stock>'0'";
                                         $run_carton = mysqli_query($con,$get_carton);
                                         while($row_carton=mysqli_fetch_array($run_carton)){
 
