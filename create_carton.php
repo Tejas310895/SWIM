@@ -59,15 +59,44 @@ if(!isset($_SESSION['admin_user'])){
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                    <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Holding Quantity</label>
+                                <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Holding Quantity</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="carton_qty" id="carton_qty" Placeholder="Enter Quantity Box Holds" required/>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Carton Lable</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="carton_qty" id="carton_qty" required/>
-                                    </div>
+                                        <input type="text" class="form-control" name="carton_lable" id="carton_lable" Placeholder="Example 72" required/>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
-                                 <button type="submit" id="carton_entry" class="btn btn-primary mr-2 btn-lg float-right">Submit</button>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Carton Sub Lable</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="carton_sub_lable" id="carton_sub_lable" Placeholder="Example Meter" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Box Size</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="carton_box_size" id="carton_box_size" Placeholder="25 Pcs Box" required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6"></div>
+                            <div class="col-6">
+                                <button type="submit" id="carton_entry" class="btn btn-primary mr-2 btn-lg float-right">Submit</button>
                             </div>
                         </div>
                     </form>

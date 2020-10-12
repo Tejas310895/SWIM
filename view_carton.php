@@ -44,6 +44,8 @@ if(!isset($_SESSION['admin_user'])){
 
                     $counter = ++$counter;
 
+                    $carton_id = $row_carton['carton_id'];
+
                     $product_id = $row_carton['product_id'];
 
                     $carton_title = $row_carton['carton_title'];
@@ -64,7 +66,7 @@ if(!isset($_SESSION['admin_user'])){
                     <td><?php echo $carton_title; ?></td>
                     <td><?php echo $product_name; ?></td>
                     <td><?php echo $carton_qty; ?></td>
-                    <td><a href="" class="btn btn-danger m-2" onclick="return confirm('Are you sure?')">Delete Product</a></td>
+                    <td><a href="index.php?edit_carton=<?php echo $carton_id; ?>" class="btn btn-primary m-2">Edit Carton</a></td>
                     </tr>
                     <?php } ?>
                 </tbody>

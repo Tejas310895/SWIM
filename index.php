@@ -151,6 +151,13 @@ include ("includes/db.php");
             
           }
 
+          
+          if(isset($_GET['edit_carton'])){
+                    
+            include("edit_carton.php");
+            
+          }
+
           if(isset($_GET['view_manufacturing'])){
                     
             include("view_manufacturing.php");

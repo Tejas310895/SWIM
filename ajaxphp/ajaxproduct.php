@@ -60,6 +60,9 @@ if(isset($_POST['carton_entry'])){
     $carton_title = $_POST['carton_title'];
     $product_id = $_POST['product_id'];
     $carton_qty = $_POST['carton_qty'];
+    $carton_lable = $_POST['carton_lable'];
+    $carton_sub_lable = $_POST['carton_sub_lable'];
+    $carton_box_size = $_POST['carton_box_size'];
 
     date_default_timezone_set('Asia/Kolkata');
 
@@ -68,12 +71,18 @@ if(isset($_POST['carton_entry'])){
     $insert_carton = "insert into cartons (product_id,
                                            carton_title,
                                            carton_qty,
+                                           carton_lable,
+                                           carton_sub_lable,
+                                           carton_box_size,
                                            carton_created_at,
                                            carton_updated_at)
                                             values
                                             ('$product_id',
                                             '$carton_title',
                                             '$carton_qty',
+                                            '$carton_lable',
+                                            '$carton_sub_lable',
+                                            '$carton_box_size',
                                             '$today',
                                             '$today'
                                             )";
