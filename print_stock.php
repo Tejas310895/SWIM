@@ -7,9 +7,9 @@ include("includes/db.php");
 
 if(isset($_GET['print_id'])){
 
-  $manufacturing_id = $_GET['print_id'];
+  $print_id = $_GET['print_id'];
 
-  $get_manufacturing = "select * from manufacturing where print_id='$manufacturing_id'";
+  $get_manufacturing = "select * from manufacturing where print_id='$print_id'";
   $run_manufacturing = mysqli_query($con,$get_manufacturing);
   $row_manufacturing = mysqli_fetch_array($run_manufacturing);
 
@@ -23,6 +23,9 @@ if(isset($_GET['print_id'])){
 
   $product_id = $row_carton['product_id'];
   $carton_title = $row_carton['carton_title'];
+  $carton_lable = $row_carton['carton_lable'];
+  $carton_sub_lable = $row_carton['carton_sub_lable'];
+  $carton_box_size = $row_carton['carton_box_size'];
 
   $get_product = "select * from products where product_id='$product_id'";
   $run_product = mysqli_query($con,$get_product);
@@ -46,6 +49,7 @@ if(isset($_GET['print_id'])){
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
     <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39 Extended Text' rel='stylesheet'>
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet'>
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="assets/vendors/jvectormap/jquery-jvectormap.css">
@@ -61,8 +65,14 @@ if(isset($_GET['print_id'])){
     <link rel="shortcut icon" href="assets/images/favicon.png" />
     <script src="barcode/js/JsBarcode.all.min.js"></script>
     <style>
-      .barcode{
-        height:120px;
+      #date{
+        height:100px;
+        width:230px;
+      }
+      
+      #pro{
+        height:100px;
+        width:180px;
       }
    @media print 
             {
@@ -90,7 +100,7 @@ if(isset($_GET['print_id'])){
       });
     </script>
   </head>
-  <body style="padding:5px;">
+  <body>
   <?php 
     for ($x = 0; $x <=($carton_qty-1); $x++) {
     ?>
@@ -98,25 +108,32 @@ if(isset($_GET['print_id'])){
     <table class="text-dark">
           <thead>
           <tr>
-            <th colspan="2">
+            <th colspan="3">
               <h4 class="text-center text-dark pt-1 mb-0">
                 PRODUCT : <?php echo $product_type; ?>
               </h4>
             </th>
           </tr>
           <tr>
-              <th class="rotate">
+              <th class="px-3">
+                <h1 class="text-center mb-0" style="font-size:6rem;font-family:Anton;"><?php echo $carton_lable; ?></h1>
+                <h6 class="text-center mb-0 text-uppercase"><?php echo $carton_sub_lable; ?></h6> 
+                <h6 class="text-center mb-0"><?php echo $carton_box_size; ?></h6>    
+              </th>
+              <th>
               <h4 class="text-center mb-0">Product Code</h4>
                   <svg class="barcode"
+                      id="pro"
                       jsbarcode-format="ean13"
                       jsbarcode-value="<?php echo $SKU_id; ?>"
                       jsbarcode-textmargin="0"
                       jsbarcode-fontoptions="bold">
                   </svg>
               </th>
-              <th class="rotate">
+              <th>
               <h4 class="text-center mb-0">Manufacuring Date</h4>
                 <svg class="barcode"
+                      id="date"
                       jsbarcode-format="code128"
                       jsbarcode-value="<?php echo date("d-M-Y", strtotime($manufacturing_created_at)); ?>"
                       jsbarcode-textmargin="0"
@@ -127,9 +144,9 @@ if(isset($_GET['print_id'])){
           </thead>
           <tbody>
               <tr class="rotate">
-                  <th colspan="2">
-                  <h3 class="text-center" style="font-size:1.2rem;font-weight:bold;"><?php echo $carton_title; ?></h3>
-                  <h4 class="text-center">MADE IN INDIA</h4>
+                  <th colspan="3">
+                  <!-- <h3 class="text-center carton_name" style="font-size:1.2rem;font-weight:bold;">25 Pcs Box</h3> -->
+                  <h4 class="text-center pt-1 mb-0">MADE IN INDIA</h4>
                   </th>
               </tr>
           </tbody>
