@@ -1,5 +1,7 @@
 <?php 
 
+include ("includes/db.php");
+
 function raw_inventory(){
     $get_raw_stock = "select * from raw_items";
     $run_raw_stock = mysqli_query($con,$get_raw_stock);
@@ -14,9 +16,7 @@ function raw_inventory(){
     }
 
 }
-
-include ("includes/db.php");
-
+echo "<script>alert(".raw_inventory().");</script>";
 $to = 'tshirsat700@gmail.com';
 $subject = 'Daily Production Reports';
 $from = 'tshirsat700@gmail.com';
