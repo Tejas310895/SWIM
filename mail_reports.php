@@ -19,7 +19,7 @@ while($row_raw_stock = mysqli_fetch_array($run_raw_stock)){
 
     $item_name = $row_raw_stock['item_name'];
     $item_unit = $row_raw_stock['item_unit'];
-    $item_stock = round($row_raw_stock['item_stock']);
+    $item_stock = round($row_raw_stock['item_stock'],2);
     $message .= '<tr>';
     $message .= '<td>'.$item_name.' - '.$item_stock.' '.$item_unit.'</td>';
     $message .= '</tr>';
