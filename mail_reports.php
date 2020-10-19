@@ -27,6 +27,24 @@ while($row_raw_stock = mysqli_fetch_array($run_raw_stock)){
 }
 $message .= '</tbody>';
 $message .= '</table>';
+//product stock
+$message .= '<h1>PRODUCT STOCK</h1>';
+$message .= '<table>';
+$message .= '<tbody>';
+$get_cartons_stock = "select * from cartons";
+$run_cartons_stock = mysqli_query($con,$get_cartons_stock);
+while($row_cartons_stock = mysqli_fetch_array($run_cartons_stock)){
+
+    $carton_title = $row_cartons_stock['carton_title'];
+    $carton_stock = $row_cartons_stock['carton_stock'];
+
+    if($carton_stock<100){$carton_color='red';}else{$carton_color='Black';};
+    $message .= '<tr>';
+    $message .= '<td style="color:'.$carton_color.';">'.$carton_title.' - '.$carton_stock.'</td>';
+    $message .= '</tr>';
+}
+$message .= '</tbody>';
+$message .= '</table>';
 $message .= '</body></html>';
 
 mail($to, $subject, $message, $headers);
