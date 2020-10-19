@@ -2,7 +2,7 @@
 
 include ("includes/db.php");
 
-$to = 'tshirsat700@gmail.com';
+$to = 'shirsatbp@gmail.com';
 $subject = 'Daily Production Reports';
 $from = 'tshirsat700@gmail.com';
 
