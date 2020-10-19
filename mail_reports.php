@@ -2,8 +2,6 @@
 
 include ("includes/db.php");
 
-
-echo "<script>alert(".raw_inventory().");</script>";
 $to = 'tshirsat700@gmail.com';
 $subject = 'Daily Production Reports';
 $from = 'tshirsat700@gmail.com';
