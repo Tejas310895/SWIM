@@ -9,7 +9,7 @@ function raw_inventory(){
         $item_unit = $row_raw_stock['item_unit'];
         $item_stock = $row_raw_stock['item_stock'];
 
-        return "<h5>$item_name - $item_stock $item_unit</h5>";
+        echo "<h5>".$item_name." - ".$item_stock." ".$item_unit."</h5>";
 
     }
 
