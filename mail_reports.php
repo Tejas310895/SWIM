@@ -19,6 +19,7 @@ while($row_raw_stock = mysqli_fetch_array()){
     $item_stock = $row_raw_stock['item_stock'];
 
     echo "$message.= <h5>".$item_name." -".$item_stock." ".$item_unit."</h5>";
+    echo "<script>alert('$item_name')</script>";
 
 }
 $message .= '</body></html>';
