@@ -20,8 +20,9 @@ while($row_raw_stock = mysqli_fetch_array($run_raw_stock)){
     $item_name = $row_raw_stock['item_name'];
     $item_unit = $row_raw_stock['item_unit'];
     $item_stock = round($row_raw_stock['item_stock'],2);
+    if($item_stock<1000){$text_color='red';}else{$text_color='Black';};
     $message .= '<tr>';
-    $message .= '<td>'.$item_name.' - '.$item_stock.' '.$item_unit.'</td>';
+    $message .= '<td style="color:'.$text_color.';">'.$item_name.' - '.$item_stock.' '.$item_unit.'</td>';
     $message .= '</tr>';
 }
 $message .= '</tbody>';
