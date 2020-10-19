@@ -1,7 +1,7 @@
 <?php 
 
 function raw_inventory(){
-    $get_raw_stock = 'select * from raw_items';
+    $get_raw_stock = "select * from raw_items";
     $run_raw_stock = mysqli_query($con,$get_raw_stock);
     while($row_raw_stock = mysqli_fetch_array()){
 
@@ -9,7 +9,7 @@ function raw_inventory(){
         $item_unit = $row_raw_stock['item_unit'];
         $item_stock = $row_raw_stock['item_stock'];
 
-        return '<h5>$item_name - $item_stock $item_unit</h5>';
+        return "<h5>$item_name - $item_stock $item_unit</h5>";
 
     }
 
@@ -26,7 +26,6 @@ $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 $message = '<html><body>';
 $message .= raw_inventory();
-
 $message .= '</body></html>';
 
 mail($to, $subject, $message, $headers);
