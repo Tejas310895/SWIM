@@ -335,7 +335,7 @@ if(isset($_POST['invoice_pre'])){
 
     $invoice_no_aft = substr($invoice_no_bef, -3, 3);
 
-    $toyear = $in_year+1;
+    $befyear = $in_year-1;
 
         if (($invoice_no_aft+1) < 10){
             $serial ="00".($invoice_no_aft+1);
@@ -345,7 +345,7 @@ if(isset($_POST['invoice_pre'])){
             $serial =$invoice_no_aft+1;
         }
 
-    $invoice_no = $in_year."-".$toyear."/".$serial;
+    $invoice_no = $befyear."-".$in_year."/".$serial;
 
     if($run_partner_count){
         echo "$invoice_no";
