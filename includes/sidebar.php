@@ -60,6 +60,7 @@
                 <li class="nav-item"> <a class="nav-link" href="index.php?view_partner">ADD COMPANY</a></li>
                 <li class="nav-item"> <a class="nav-link" href="index.php?generate_invoice">GENERATE INVOCE</a></li>
                 <li class="nav-item"> <a class="nav-link" href="index.php?invoice_entries">INVOICE ENTRIES</a></li>
+                <li class="nav-item"> <a class="nav-link" href="index.php?invoice_bulk_entries">INVOICE BULK ENTRIES</a></li>
               </ul>
             </div>
           </li>

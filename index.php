@@ -223,6 +223,12 @@ include ("includes/db.php");
             include("edit_customer.php");
             
           }
+
+          if(isset($_GET['invoice_bulk_entries'])){
+                    
+            include("invoice_bulk_entries.php");
+            
+          }
           
           ?>
           <!-- content-wrapper ends -->
