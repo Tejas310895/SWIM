@@ -26,6 +26,7 @@ if(!isset($_SESSION['admin_user'])){
                     <tr>
                     <th>Date</th>
                     <th>Invoice No.</th>
+                    <th>Bill To</th>
                     <th>Company Name</th>
                     <th>Taxable Amount</th>
                     <th>Total Amount</th>
@@ -41,6 +42,7 @@ if(!isset($_SESSION['admin_user'])){
                     $invoice_no = $row__invoice_entries['invoice_no'];
                     $partner_id = $row__invoice_entries['partner_id'];
                     $invoice_date = $row__invoice_entries['invoice_date'];
+                    $billed_title = $row__invoice_entries['billed_title'];
 
                     $get_partner = "select * from partners where partner_id='$partner_id'";
                     $run_partner = mysqli_query($con,$get_partner);
@@ -69,6 +71,7 @@ if(!isset($_SESSION['admin_user'])){
                     <tr>
                     <td><?php echo date("d-M-Y", strtotime($invoice_date)); ?></td>
                     <td><?php echo $invoice_no; ?></td>
+                    <td><?php echo $billed_title; ?></td>
                     <td><?php echo $partner_title; ?></td>
                     <td><?php echo $invoice_total; ?></td>
                     <td><?php echo $invoice_tax_total; ?></td>
