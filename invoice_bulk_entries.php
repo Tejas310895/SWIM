@@ -73,8 +73,8 @@ if(!isset($_SESSION['admin_user'])){
                     <td><?php echo $invoice_no; ?></td>
                     <td><?php echo $billed_title; ?></td>
                     <td><?php echo $partner_title; ?></td>
-                    <td><?php echo $invoice_total; ?></td>
-                    <td><?php echo $invoice_tax_total; ?></td>
+                    <td><?php echo round($invoice_total, 2); ?></td>
+                    <td><?php echo round($invoice_tax_total, 2); ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
