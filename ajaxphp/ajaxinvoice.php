@@ -346,7 +346,7 @@ if(isset($_POST['invoice_pre'])){
 
     $aftyear = $in_year+1;
 
-    $get_fin_year = "select  MID(invoice_no, 3, 5) as demo from invoice limit 1";
+    $get_fin_year = "select  MID(invoice_no, 2, 5) as demo from invoice limit 1";
     $run_fin_year = mysqli_query($con,$get_fin_year);
     $fin_count = mysqli_num_rows($run_fin_year);
     $row_fin_year =mysqli_fetch_array($run_fin_year);
