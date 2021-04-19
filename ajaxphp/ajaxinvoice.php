@@ -360,7 +360,7 @@ if(isset($_POST['invoice_pre'])){
             $serial =$invoice_no_aft+1;
         }
 
-    $invoice_no = $in_year."-".$aftyear."/".$serial."/".$invoice_no_bef;
+    $invoice_no = $in_year."-".$aftyear."/".$serial;
 
     if($run_partner_count){
         echo "$invoice_no";
