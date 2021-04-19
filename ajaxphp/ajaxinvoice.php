@@ -329,7 +329,7 @@ if(isset($_POST['invoice_pre'])){
 
     $raw_fin_year = date("y")."-".((date("y"))+1);
 
-    $get_partner_count = "SELECT * FROM invoice where LEFT(invoice_no, 2)='$invoice_pre' and MID(invoice_no, 4, 5)='$raw_fin_year' order by RIGHT(invoice_no, 3) desc limit 1";
+    $get_partner_count = "SELECT * FROM invoice where LEFT(invoice_no, 2)='$invoice_pre' and MID(invoice_no, 3, 4)='$raw_fin_year' order by RIGHT(invoice_no, 3) desc limit 1";
     $run_partner_count = mysqli_query($con,$get_partner_count);
     $row_partner_count = mysqli_fetch_array($run_partner_count);
     $count_fin_yer = mysqli_num_rows($run_partner_count);
