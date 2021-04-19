@@ -329,7 +329,7 @@ if(isset($_POST['invoice_pre'])){
 
     $raw_fin_year = date("y")."-".((date("y"))+1);
 
-    $get_partner_count = "SELECT * FROM invoice where LEFT(invoice_no, 2)='$invoice_pre' and MID(invoice_no, 3, 4)='$raw_fin_year' order by RIGHT(invoice_no, 3) desc limit 1";
+    $get_partner_count = "SELECT * FROM invoice where LEFT(invoice_no, 2)='$invoice_pre' and MID(invoice_no, 3, 5)='$raw_fin_year' order by RIGHT(invoice_no, 3) desc limit 1";
     $run_partner_count = mysqli_query($con,$get_partner_count);
     $row_partner_count = mysqli_fetch_array($run_partner_count);
     $count_fin_yer = mysqli_num_rows($run_partner_count);
@@ -346,11 +346,11 @@ if(isset($_POST['invoice_pre'])){
 
     $aftyear = $in_year+1;
 
-    $get_fin_year = "select  MID(invoice_no, 3, 4) as demo from invoice limit 1";
-    $run_fin_year = mysqli_query($con,$get_fin_year);
-    $fin_count = mysqli_num_rows($run_fin_year);
-    $row_fin_year =mysqli_fetch_array($run_fin_year);
-    $demo_yer = $row_fin_year['demo'];
+    // $get_fin_year = "select  MID(invoice_no, 3, 5) as demo from invoice limit 1";
+    // $run_fin_year = mysqli_query($con,$get_fin_year);
+    // $fin_count = mysqli_num_rows($run_fin_year);
+    // $row_fin_year =mysqli_fetch_array($run_fin_year);
+    // $demo_yer = $row_fin_year['demo'];
 
         if (($invoice_no_aft+1) < 10){
             $serial ="00".($invoice_no_aft+1);
@@ -360,7 +360,7 @@ if(isset($_POST['invoice_pre'])){
             $serial =$invoice_no_aft+1;
         }
 
-    $invoice_no = $in_year."-".$aftyear."/".$serial."/".$demo_yer;
+    $invoice_no = $in_year."-".$aftyear."/".$seria;
 
     if($run_partner_count){
         echo "$invoice_no";
