@@ -15,7 +15,7 @@ if(!isset($_SESSION['admin_user'])){
         <h4 class="py-2">Raw Stock Inventory Update</h4>
     </div>
     <div class="col-6">
-        <a class="btn btn-success float-right" href="index.php?view_rawentry">Go Back</a>
+        <a class="btn btn-success float-right" href="index.php?view_rawexchange">Go Back</a>
     </div>
 </div>
 <div class="row">
@@ -26,11 +26,11 @@ if(!isset($_SESSION['admin_user'])){
                     <form class="form-sample">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group row" id="insert_entry" action="">
-                                    <label class="col-sm-3 col-form-label">Supplier Name</label>
+                                <div class="form-group row" id="insert_exchange" action="">
+                                    <label class="col-sm-3 col-form-label">Reciever Name</label>
                                     <div class="col-sm-9">
-                                    <select class="form-control" name="vendor_id" id="vendor_id" required>
-                                    <option disabled selected value>Choose the Supplier</option>
+                                    <select class="form-control" name="exchange_vendor_id" id="exchange_vendor_id" required>
+                                    <option disabled selected value>Choose the Reciever</option>
                                     <?php 
                                         
                                         $get_vendors = "select * from vendors";
@@ -52,7 +52,7 @@ if(!isset($_SESSION['admin_user'])){
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Item Name</label>
                                     <div class="col-sm-9">
-                                    <select class="form-control" name="item_id" id="item_id" required>
+                                    <select class="form-control" name="exchange_item_id" id="exchange_item_id" required>
                                     <option disabled selected value>Select Raw Item</option>
                                     <?php 
                                     
@@ -62,8 +62,13 @@ if(!isset($_SESSION['admin_user'])){
                                     
                                     $item_id = $row_items['item_id'];
                                     $item_name = $row_items['item_name'];
+                                    $item_stock = $row_items['item_stock'];
+
+                                    if($item_stock>0){
 
                                     echo "<option value='$item_id'>$item_name</option>";
+
+                                    }
                                     }
                                     ?>
                                     </select>
@@ -74,50 +79,14 @@ if(!isset($_SESSION['admin_user'])){
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                <label class="col-sm-3 col-form-label" id="label_qty">Quantity</label>
+                                <label class="col-sm-3 col-form-label" id="label_qty">Quantity<h6 id="qty_unit" class="text-uppercase text-info mb-0"></h6></label>
                                 <div class="col-sm-9">
-                                    <input type="number" onkeypress="return /[0-9a-zA-Z.]/i.test(event.key)" class="form-control" name="item_qty" id="item_qty" placeholder="" required/>
+                                    <input type="text" class="form-control" name="exchange_item_qty" id="exchange_item_qty" placeholder="" required/>
                                 </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Per Unit Cost</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="item_unit_cost" id="item_unit_cost" required/>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Total Cost</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="item_total_cost" id="item_total_cost" required/>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Invoice/Bill No.</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="item_invoice" id="item_invoice" required/>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                    <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Extra Paid</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="item_extra" id="item_extra" required/>
-                                    </div>
-                                    </div>
-                                </div>
-                            <div class="col-md-6">
-                                 <button type="submit" id="raw_entry" class="btn btn-primary mr-2 btn-lg float-right">Submit</button>
+                                 <button type="submit" id="raw_exchange" class="btn btn-primary mr-2 btn-lg float-right">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -127,4 +96,4 @@ if(!isset($_SESSION['admin_user'])){
     </div>
     <script src="jquery/dist/jquery.min.js"></script>
     <script src="js/vendor.js"></script>
-                                    <?php } ?>
+<?php } ?>

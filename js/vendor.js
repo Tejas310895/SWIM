@@ -131,4 +131,41 @@ $(document).ready(function () {
         
     });
 
+    $('#raw_exchange').click(function (e) { 
+        e.preventDefault();
+        var raw_exchange = $(this).attr("id");
+        var exchange_vendor_id = $("#exchange_vendor_id").val();
+        var exchange_item_id = $("#exchange_item_id").val();
+        var exchange_item_qty = $("#exchange_item_qty").val();
+
+        $.ajax({
+            type: "POST",
+            url: "ajaxphp/ajaxvendor.php",
+            data: {"raw_exchange": raw_exchange,
+            "exchange_vendor_id": exchange_vendor_id,
+            "exchange_item_id": exchange_item_id,
+            "exchange_item_qty": exchange_item_qty},
+            success: function (response) {
+                $('#entry_alerts').html(response);
+                $("#entry_alerts").fadeTo(3000, 500).slideUp(500, function(){
+                    $("#entry_alerts").slideUp(500);
+                });
+            }
+        });
+    });
+
+    $('#exchange_item_id').change(function (e) { 
+        e.preventDefault();
+        var unit_change_id = $(this).val();
+
+        $.ajax({
+            type: "POST",
+            url: "ajaxphp/ajaxvendor.php",
+            data: {"unit_change_id": unit_change_id},
+            success: function (response) {
+                $('#qty_unit').html(" in "+response);
+            }
+        });
+    });
+
 });

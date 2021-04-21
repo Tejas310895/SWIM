@@ -229,6 +229,18 @@ include ("includes/db.php");
             include("invoice_bulk_entries.php");
             
           }
+
+          if(isset($_GET['view_rawexchange'])){
+                    
+            include("view_rawexchange.php");
+            
+          }
+
+          if(isset($_GET['create_rawexchange'])){
+                    
+            include("create_rawexchange.php");
+            
+          }
           
           ?>
           <!-- content-wrapper ends -->
