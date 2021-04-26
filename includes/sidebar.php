@@ -26,6 +26,7 @@
                 <li class="nav-item"> <a class="nav-link" href="index.php?view_vendor">ADD SUPPLIER</a></li>
                 <li class="nav-item"> <a class="nav-link" href="index.php?view_rawstock">ADD NEW RAW PRODUCT</a></li>
                 <li class="nav-item"> <a class="nav-link" href="index.php?view_rawentry">ADD PURCHASE</a></li>
+                <li class="nav-item"> <a class="nav-link" href="index.php?view_rawexchange">EXCHANGE</a></li>
               </ul>
             </div>
           </li>
