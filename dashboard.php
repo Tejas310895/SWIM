@@ -177,7 +177,27 @@ if(!isset($_SESSION['admin_user'])){
                     <tbody>
                         <?php 
                         
-                          $get_inc_products = "select * from invoice_products where EXTRACT(YEAR_MONTH FROM invoice_product_created_at)='$mou_date' group by carton_id";
+                          $get_inc_comp = "select * from invoice_products where EXTRACT(YEAR_MONTH FROM invoice_product_created_at)='$mou_date' group by LEFT(invoice_no, 2)";
+                          $run_inc_comp = mysqli_query($con,$get_inc_comp);
+                          while($row_inc_comp=mysqli_fetch_array($run_inc_comp)){
+
+                            $inc_comp = $row_inc_comp['invoice_no'];
+                            $comp = substr($inc_comp, 0,2);
+
+                            $get_comp_name = "select * from partners where LEFT(partner_title, 2)='$comp'";
+                            $run_comp_name = mysqli_query($con,$get_comp_name);
+                            $row_comp_name = mysqli_fetch_array($run_comp_name);
+
+                            $partner_title = $row_comp_name['partner_title'];
+
+                            echo "
+                            
+                            <tr>
+                              <th colspan='3' class='text-center text-uppercase bg-danger'>$partner_title</th>
+                            </tr>
+                            
+                            ";
+                          $get_inc_products = "select * from invoice_products where EXTRACT(YEAR_MONTH FROM invoice_product_created_at)='$mou_date' and LEFT(invoice_no, 2)='$comp' group by carton_id";
                           $run_inc_products = mysqli_query($con,$get_inc_products);
                           $counter = 0;
                           while($row_inc_products=mysqli_fetch_array($run_inc_products)){
@@ -191,7 +211,7 @@ if(!isset($_SESSION['admin_user'])){
 
                             $carton_name = $row_carton_name['carton_title'];
 
-                            $get_sold_qty = "select sum(carton_qty) as sold_qty from invoice_products where EXTRACT(YEAR_MONTH FROM invoice_product_created_at)='$mou_date' and carton_id='$carton_id'";
+                            $get_sold_qty = "select sum(carton_qty) as sold_qty from invoice_products where EXTRACT(YEAR_MONTH FROM invoice_product_created_at)='$mou_date' and LEFT(invoice_no, 2)='$comp' and carton_id='$carton_id'";
                             $run_sold_qty = mysqli_query($con,$get_sold_qty);
                             $row_sold_qty = mysqli_fetch_array($run_sold_qty);
 
@@ -202,6 +222,7 @@ if(!isset($_SESSION['admin_user'])){
                         <td><?php echo $carton_name; ?></td>
                         <td><?php echo $sold_qty; ?></td>
                         </tr>
+                        <?php } ?>
                         <?php } ?>
                     </tbody>
                   </table>
