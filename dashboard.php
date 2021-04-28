@@ -230,5 +230,4 @@ if(!isset($_SESSION['admin_user'])){
 <script src='https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.js' defer></script>
 <script src='https://cdn.datatables.net/buttons/1.5.1/js/buttons.bootstrap.js' defer></script>
 <script src='https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.js' defer></script>
-<script src='https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js' defer></script>
 <script  src='js/datatable.js'></script>
