@@ -158,7 +158,7 @@ if(!isset($_SESSION['admin_user'])){
           <div class="card">
             <div class="card-header" id="headingOne">
               <h5 class="mb-0">
-                <button class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#mou<?php echo $mou_date;?>" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn btn-info btn-lg btn-block" data-toggle="collapse" data-target="#mou<?php echo $mou_date;?>" aria-expanded="true" aria-controls="collapseOne">
                   <h5 clas="mb-0">SALE DATA FOR MONTH <?php echo $display_delivery_date; ?></h5>
                 </button>
               </h5>
