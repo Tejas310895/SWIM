@@ -159,7 +159,7 @@ if(!isset($_SESSION['admin_user'])){
             <div class="card-header" id="headingOne">
               <h5 class="mb-0">
                 <button class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#mou<?php echo $mou_date;?>" aria-expanded="true" aria-controls="collapseOne">
-                  Sale data for the month <?php echo $display_delivery_date; ?>
+                  <h5 clas="mb-0">SALE DATA FOR MONTH <?php echo $display_delivery_date; ?></h5>
                 </button>
               </h5>
             </div>
@@ -223,11 +223,3 @@ if(!isset($_SESSION['admin_user'])){
           })
           </script>
               <?php } ?>
-<script src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js'></script>
-<script src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js' defer></script>
-<script src='https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.js' defer></script>
-<script src='https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.js' defer></script>
-<script src='https://cdn.datatables.net/buttons/1.5.1/js/buttons.bootstrap.js' defer></script>
-<script src='https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.js' defer></script>
-<script  src='js/datatable.js'></script>
