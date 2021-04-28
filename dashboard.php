@@ -15,6 +15,9 @@ if(!isset($_SESSION['admin_user'])){
   <li class="nav-item">
     <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Product Inventory</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-sale" role="tab" aria-controls="pills-sale" aria-selected="false">Sale Inventory</a>
+  </li>
 </ul>
 <div class="tab-content border-0" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
@@ -136,6 +139,81 @@ if(!isset($_SESSION['admin_user'])){
         <?php } ?>
       </div>
     </div>
+    <div class="tab-pane" id="pills-sale" role="tabpanel" aria-labelledby="pills-sale-tab">
+      <div class="row">
+        <div id="accordion" class="w-100">
+        <?php 
+        
+        $get_uni_month = "SELECT EXTRACT(YEAR_MONTH FROM invoice_product_created_at) AS mou from invoice_products group by EXTRACT(YEAR_MONTH FROM invoice_product_created_at) order by invoice_product_id desc";
+        $run_uni_month = mysqli_query($con,$get_uni_month);
+        while($row_uni_month=mysqli_fetch_array($run_uni_month)){
+
+          $mou_date = $row_uni_month['mou'];
+          $month = substr($mou_date, -2);
+          $Year = substr($mou_date, 0,4);
+          $year_month = $Year."-".$month;
+          $display_delivery_date = date('M-Y',strtotime($year_month));
+        
+        ?>
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#mou<?php echo $mou_date;?>" aria-expanded="true" aria-controls="collapseOne">
+                  Sale data for the month <?php echo $display_delivery_date; ?>
+                </button>
+              </h5>
+            </div>
+            <div id="mou<?php echo $mou_date;?>" class="collapse" aria-labelledby="headingOne" data-parent="#mou<?php echo $mou_date;?>">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                        <th>Sl.No</th>
+                        <th>Name</th>
+                        <th>Sold Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        
+                          $get_inc_products = "select * from invoice_products where EXTRACT(YEAR_MONTH FROM invoice_product_created_at)='$mou_date' group by carton_id";
+                          $run_inc_products = mysqli_query($con,$get_inc_products);
+                          $counter = 0;
+                          while($row_inc_products=mysqli_fetch_array($run_inc_products)){
+                            $carton_id = $row_inc_products['carton_id'];
+                            $unit_rate = $row_inc_products['unit_rate'];
+                            $gst_rate = $row_inc_products['gst_rate'];
+
+                            $get_carton_name = "select * from cartons where carton_id='$carton_id'";
+                            $run_carton_name = mysqli_query($con,$get_carton_name);
+                            $row_carton_name =  mysqli_fetch_array($run_carton_name);
+
+                            $carton_name = $row_carton_name['carton_title'];
+
+                            $get_sold_qty = "select sum(carton_qty) as sold_qty from invoice_products where EXTRACT(YEAR_MONTH FROM invoice_product_created_at)='$mou_date' and carton_id='$carton_id'";
+                            $run_sold_qty = mysqli_query($con,$get_sold_qty);
+                            $row_sold_qty = mysqli_fetch_array($run_sold_qty);
+
+                            $sold_qty = $row_sold_qty['sold_qty'];
+                        ?>
+                        <tr>
+                        <td><?php echo ++$counter; ?></td>
+                        <td><?php echo $carton_name; ?></td>
+                        <td><?php echo $sold_qty; ?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+           </div>
+           <?php } ?>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
           <script src="js/script.js"></script>
@@ -145,3 +223,11 @@ if(!isset($_SESSION['admin_user'])){
           })
           </script>
               <?php } ?>
+<script src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js'></script>
+<script src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js' defer></script>
+<script src='https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.js' defer></script>
+<script src='https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.js' defer></script>
+<script src='https://cdn.datatables.net/buttons/1.5.1/js/buttons.bootstrap.js' defer></script>
+<script src='https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.js' defer></script>
+<script  src='js/datatable.js'></script>
