@@ -24,6 +24,7 @@ if(!isset($_SESSION['admin_user'])){
                 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
+                    <th>INC ID</th>
                     <th>Date</th>
                     <th>Invoice No.</th>
                     <th>Bill To</th>
@@ -35,10 +36,11 @@ if(!isset($_SESSION['admin_user'])){
                 <tbody>
                 <?php 
                 
-                $get_invoice_entries = "select * from invoice order by invoice_created_at desc";
+                $get_invoice_entries = "select * from invoice order by invoice_id desc";
                 $run_invoice_entries = mysqli_query($con,$get_invoice_entries);
                 while($row__invoice_entries = mysqli_fetch_array($run_invoice_entries)){
 
+                    $invoice_id = $row__invoice_entries['invoice_id'];
                     $invoice_no = $row__invoice_entries['invoice_no'];
                     $partner_id = $row__invoice_entries['partner_id'];
                     $invoice_date = $row__invoice_entries['invoice_date'];
@@ -69,6 +71,7 @@ if(!isset($_SESSION['admin_user'])){
                     }
                 ?>
                     <tr>
+                    <td><?php echo $invoice_id; ?></td>
                     <td><?php echo date("d-M-Y", strtotime($invoice_date)); ?></td>
                     <td><?php echo $invoice_no; ?></td>
                     <td><?php echo $billed_title; ?></td>
