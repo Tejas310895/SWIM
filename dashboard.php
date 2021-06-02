@@ -24,7 +24,7 @@ if(!isset($_SESSION['admin_user'])){
     <div class="row">
       <?php 
       
-      $get_raw = "select * from raw_items order by item_stock asc";
+      $get_raw = "select * from raw_items";
       $run_raw = mysqli_query($con,$get_raw);
       while($row_raw = mysqli_fetch_array($run_raw)){
           $item_name = $row_raw['item_name'];
