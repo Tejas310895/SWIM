@@ -568,14 +568,15 @@ if(isset($_GET['invoice_no'])){
                     Duplicate For Transporter
                 </h5>
             </div>
+        </div>
             <div class="row">
-            <div class="col-4 pt-2 text-center pt-2" style="border:1px solid #000;text-transform: uppercase;">
-                <h1 class="mb-0 text-uppercase"><?php echo $partner_title; ?></h1>
-            </div>
-            <div class="col-6 p-2" style="border:1px solid #000;">
-                <h5 class="text-center mb-0 text-capitalize"><?php echo $partner_address; ?></h5>
-                <h5 class="text-center mb-0">✆ +91 <?php echo $partner_contact; ?> | ✉ <?php echo $partner_email; ?></h5>
-            </div>
+                <div class="col-4 pt-2 text-center pt-2" style="border:1px solid #000;text-transform: uppercase;">
+                    <h1 class="mb-0 text-uppercase"><?php echo $partner_title; ?></h1>
+                </div>
+                <div class="col-6 p-2" style="border:1px solid #000;">
+                    <h5 class="text-center mb-0 text-capitalize"><?php echo $partner_address; ?></h5>
+                    <h5 class="text-center mb-0">✆ +91 <?php echo $partner_contact; ?> | ✉ <?php echo $partner_email; ?></h5>
+                </div>
             </div>
         <div class="col-6 pt-2 mb-0" style="border:1px solid #000;">
             <h5>GSTIN Number : <?php echo $partner_gst; ?></h5>
