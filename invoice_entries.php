@@ -96,7 +96,7 @@ if(!isset($_SESSION['admin_user'])){
                     </td>
                     <td>
                         <a href="print_invoice.php?invoice_no=<?php echo $invoice_no; ?>" target="_blank" class="btn btn-primary">Print</a><br>
-                        <a href="invoice.php?invoice_no=<?php echo $invoice_no; ?>" target="_blank" class="btn btn-primary mt-2" download>Download</a><br>
+                        <a href="invoice.php?invoice_no=<?php echo $invoice_no; ?>" class="btn btn-primary mt-2" download="SWAF INC <?php echo $invoice_no; ?>">Download</a><br>
                         <a href="delete_invoice.php?invoice_no=<?php echo $invoice_no; ?>" class="btn btn-danger mt-2" onclick="return confirm('Are you sure?')">Delete</a>
                     </td>
                     </tr>
