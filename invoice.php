@@ -1,5 +1,4 @@
 <?php 
-
 include("includes/db.php");
 
 ?>
@@ -59,32 +58,24 @@ if(isset($_GET['invoice_no'])){
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Silver Wrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SW INC <?php echo $invoice_no; ?></title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="https://tech.silverwrap.in/assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="https://tech.silverwrap.in/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="http://localhost/SWIM/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="http://localhost/SWIM/assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="https://tech.silverwrap.in/assets/vendors/jvectormap/jquery-jvectormap.css">
-    <link rel="stylesheet" href="https://tech.silverwrap.in/assets/vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="https://tech.silverwrap.in/assets/vendors/owl-carousel-2/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://tech.silverwrap.in/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <link rel="stylesheet" href="http://localhost/SWIM/assets/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="http://localhost/SWIM/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="http://localhost/SWIM/assets/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="http://localhost/SWIM/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="https://tech.silverwrap.in/assets/css/style.css">
+    <link rel="stylesheet" href="http://localhost/SWIM/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="https://tech.silverwrap.in/assets/images/favicon.png" />
-    <style>
-      @media print {
-                    .pagebreak { page-break-before: always; } 
-                    }
-                    @page {
-                        margin: 2%;
-                            }
-  </style>
+    <link rel="shortcut icon" href="http://localhost/SWIM/assets/images/favicon.png" />
     <!-- <script>
         window.onload = function () {
             window.print();
@@ -97,9 +88,7 @@ if(isset($_GET['invoice_no'])){
   </head>
   <body>
 
-<div class="container-fluid text-dark bg-white">
-<div class="pagebreak"> 
-    <div class="container-fluid text-dark bg-white">
+<div class="container-fluid text-dark bg-white" id="tblCustomers">
     <div class="row">
             <div class="col-9 px-0" style="border:1px solid #000;">
                 <h4 class="text-center p-2 mb-0">
@@ -108,7 +97,7 @@ if(isset($_GET['invoice_no'])){
             </div>
             <div class="col-3 px-0" style="border:1px solid #000;">
                 <h5 class="text-center p-2 mb-0">
-                    Orignal For Recipient
+                    Original For Recipient
                 </h5>
             </div>
             <div class="col-6 pt-2 text-center pt-2" style="border:1px solid #000;text-transform: uppercase;">
@@ -171,7 +160,7 @@ if(isset($_GET['invoice_no'])){
             </h5>
         </div>
         <div class="col-12 px-0 mt-2">
-            <table class="border-0 text-dark" style="width:100%;">
+            <table class="text-dark" style="width:100%;">
                 <thead style="font-size:1.1rem;">
                     <tr class="text-center">
                         <th class="align-middle p-1">Sl.No</th>
@@ -218,15 +207,15 @@ if(isset($_GET['invoice_no'])){
                     $total_amount += $total;
                     
                 ?>
-                    <tr class="text-center" style="font-size:1rem;">
+                    <tr class="text-center border" style="font-size:1rem;">
                         <td class=" p-1"><?php echo ++$pro_counter; ?></td>
                         <td class=" p-1"><?php echo $carton_title; ?></td>
                         <td class=" p-1"><?php echo $hsn_code; ?></td>
                         <td class=" p-1"><?php echo $inc_carton_qty; ?></td>
                         <td class=" p-1"><?php echo $unit_rate; ?></td>
-                        <td class=" p-1"><?php echo round($taxable_amount,2); ?></td>
-                        <td class=" p-1"><?php echo round($discount,2); ?> %</td>
-                        <td class=" p-1"><?php echo round($taxable_amount-($taxable_amount*($discount/100)),2); ?></td>
+                        <td class=" p-1"><?php echo $taxable_amount; ?></td>
+                        <td class=" p-1"><?php echo $discount; ?> %</td>
+                        <td class=" p-1"><?php echo $taxable_amount-($taxable_amount*($discount/100)); ?></td>
                     </tr>
                 <?php } ?>
                     <?php 
@@ -262,11 +251,8 @@ if(isset($_GET['invoice_no'])){
                 </tbody>
                 <tfoot style="font-size:0.8rem;">
                     <tr>
-                        <th colspan="7" class="text-right pr-2"><h5 class="mb-0">TOTAL</h5></th>
-                        <th class="text-center"><h5 class="mb-0"><?php echo round($total_amount,2); ?></h5></th>
-                    </tr>
-                    <tr>
-                        <th colspan="13" class="text-right pr-2">AMOUNT IN WORDS : TWO LAKH TEWNTY THOUSAND ONLY</th>
+                        <th colspan="7" class="text-right pr-2"><h5 class="mb-0">TOTAL TAXABLE VALUE</h5></th>
+                        <th class="text-center"><h5 class="mb-0"><?php echo $total_amount; ?></h5></th>
                     </tr>
                 </tfoot>
             </table>
@@ -277,14 +263,14 @@ if(isset($_GET['invoice_no'])){
             <table style="width:100%;">
                 <thead>
                     <tr class="text-center">
-                        <th rowspan="2">HSN/SAC</th>
-                        <th rowspan="2">Taxable Value</th>
-                        <th colspan="2">CGST</th>
-                        <th colspan="2">SGST</th>
-                        <th colspan="2">IGST</th>
-                        <th rowspan="2">Total Tax Amount</th>
+                        <th class="border" rowspan="2">HSN/SAC</th>
+                        <th class="border" rowspan="2">Taxable Value</th>
+                        <th class="border" colspan="2">CGST</th>
+                        <th class="border" colspan="2">SGST</th>
+                        <th class="border" colspan="2">IGST</th>
+                        <th class="border" rowspan="2">Total Tax Amount</th>
                     </tr>
-                    <tr class="text-center">
+                    <tr class="text-center" style="border-bottom:1px solid #000;">
                         <th class=" p-1">Rate</th>
                         <th class=" p-1">Amount</th>
                         <th class=" p-1">Rate</th>
@@ -358,28 +344,28 @@ if(isset($_GET['invoice_no'])){
                     ?>
                     <tr class="text-center">
                         <td><?php echo $dis_hsn; ?></td>
-                        <td><?php echo round($total_taxable_amount_hsn,2); ?></td>
+                        <td><?php echo $total_taxable_amount_hsn; ?></td>
                         <td><?php echo $cgst_tax_hsn; ?> %</td>
-                        <td><?php echo round($cgst_amount_hsn,2); ?></td>
+                        <td><?php echo $cgst_amount_hsn; ?></td>
                         <td><?php echo $sgst_tax_hsn; ?> %</td>
-                        <td><?php echo round($sgst_amount_hsn,2); ?></td>
+                        <td><?php echo $sgst_amount_hsn; ?></td>
                         <td><?php echo $igst_tax_hsn; ?> %</td>
-                        <td><?php echo round($igst_amount_hsn,2); ?></td>
-                        <td><?php echo round($cgst_amount_hsn+$sgst_amount_hsn+$igst_amount_hsn,2); ?></td>
+                        <td><?php echo $igst_amount_hsn; ?></td>
+                        <td><?php echo $cgst_amount_hsn+$sgst_amount_hsn+$igst_amount_hsn; ?></td>
                     </tr>
                         <?php } ?>
                 </tbody>
-                    <tfoot>
+                <tfoot>
                     <tr class="text-center">
                         <th>TOTAL</th>
-                        <th><?php echo round($grand_taxable,2); ?></th>
+                        <th><?php echo $grand_taxable; ?></th>
                         <th>0</th>
-                        <th><?php echo round($grand_cgst,2); ?></th>
+                        <th><?php echo $grand_cgst; ?></th>
                         <th>0</th>
-                        <th><?php echo round($grand_sgst,2); ?></th>
+                        <th><?php echo $grand_sgst; ?></th>
                         <th>0</th>
-                        <th><?php echo round($grand_igst,2); ?></th>
-                        <th><?php echo round($grand_cgst+$grand_sgst+$grand_igst,2); ?></th>
+                        <th><?php echo $grand_igst; ?></th>
+                        <th><?php echo $grand_cgst+$grand_sgst+$grand_igst; ?></th>
                     </tr>
                 </tfoot>
             </table>
@@ -463,19 +449,19 @@ if(isset($_GET['invoice_no'])){
             
             ?>
                 <tr>
-                    <th class="py-1">Taxable Amount</th> <td class="py-1 text-right"><?php echo round($grand_taxable_ex,2); ?></td>
+                    <th class="py-1">Taxable Amount</th> <td class="py-1 text-right"><?php echo $grand_taxable_ex; ?></td>
                 </tr>
                 <tr class="<?php if($grand_cgst_ex>=1){ echo "show";}else{ echo "d-none";} ?>">
-                    <th class="py-1">Output CGST</th><td class="py-1 text-right"><?php echo round($grand_cgst_ex,2); ?></td>
+                    <th class="py-1">Output CGST</th><td class="py-1 text-right"><?php echo $grand_cgst_ex; ?></td>
                 </tr>
                 <tr class="<?php if($grand_sgst_ex>=1){ echo "show";}else{ echo "d-none";} ?>">
-                    <th class="py-1">Output SGST</th><td class="py-1 text-right"><?php echo round($grand_sgst_ex,2); ?></td>
+                    <th class="py-1">Output SGST</th><td class="py-1 text-right"><?php echo $grand_sgst_ex; ?></td>
                 </tr>
                 <tr class="<?php if($grand_igst_ex>=1){ echo "show";}else{ echo "d-none";} ?>">
-                    <th class="py-1">Output IGST</th><td class="py-1 text-right"><?php echo round($grand_igst_ex,2); ?></td>
+                    <th class="py-1">Output IGST</th><td class="py-1 text-right"><?php echo $grand_igst_ex; ?></td>
                 </tr>
                 <tr>
-                    <th class="py-1">Total Tax</th><td class="py-1 text-right"><?php echo round($grand_cgst_ex+$grand_sgst_ex+$grand_igst_ex,2); ?></td>
+                    <th class="py-1">Total Tax</th><td class="py-1 text-right"><?php echo $grand_cgst_ex+$grand_sgst_ex+$grand_igst_ex; ?></td>
                 </tr>
                 <tr>
                     <th class="py-1">Round Off</th><td class="py-1 text-right"><?php echo round(round($grand_taxable_ex+$grand_cgst_ex+$grand_sgst_ex+$grand_igst_ex)-($grand_taxable_ex+$grand_cgst_ex+$grand_sgst_ex+$grand_igst_ex),2); ?></td>
@@ -489,6 +475,46 @@ if(isset($_GET['invoice_no'])){
             <h5 class="my-2 text-right text-uppercase">
                 TOTAL IN WORDS : INR 
                 <?php     
+                            // Create a function for converting the amount in words
+                        function AmountInWords(float $amount)
+                        {
+                        $amount_after_decimal = round($amount - ($num = floor($amount)), 2) * 100;
+                        // Check if there is any number after decimal
+                        $amt_hundred = null;
+                        $count_length = strlen($num);
+                        $x = 0;
+                        $string = array();
+                        $change_words = array(0 => '', 1 => 'One', 2 => 'Two',
+                            3 => 'Three', 4 => 'Four', 5 => 'Five', 6 => 'Six',
+                            7 => 'Seven', 8 => 'Eight', 9 => 'Nine',
+                            10 => 'Ten', 11 => 'Eleven', 12 => 'Twelve',
+                            13 => 'Thirteen', 14 => 'Fourteen', 15 => 'Fifteen',
+                            16 => 'Sixteen', 17 => 'Seventeen', 18 => 'Eighteen',
+                            19 => 'Nineteen', 20 => 'Twenty', 30 => 'Thirty',
+                            40 => 'Forty', 50 => 'Fifty', 60 => 'Sixty',
+                            70 => 'Seventy', 80 => 'Eighty', 90 => 'Ninety');
+                            $here_digits = array('', 'Hundred','Thousand','Lakh', 'Crore');
+                            while( $x < $count_length ) {
+                            $get_divider = ($x == 2) ? 10 : 100;
+                            $amount = floor($num % $get_divider);
+                            $num = floor($num / $get_divider);
+                            $x += $get_divider == 10 ? 1 : 2;
+                            if ($amount) {
+                            $add_plural = (($counter = count($string)) && $amount > 9) ? 's' : null;
+                            $amt_hundred = ($counter == 1 && $string[0]) ? ' and ' : null;
+                            $string [] = ($amount < 21) ? $change_words[$amount].' '. $here_digits[$counter]. $add_plural.' 
+                            '.$amt_hundred:$change_words[floor($amount / 10) * 10].' '.$change_words[$amount % 10]. ' 
+                            '.$here_digits[$counter].$add_plural.' '.$amt_hundred;
+                                }
+                        else $string[] = null;
+                        }
+                        $implode_to_Rupees = implode('', array_reverse($string));
+                        $get_paise = ($amount_after_decimal > 0) ? "And " . ($change_words[$amount_after_decimal / 10] . " 
+                        " . $change_words[$amount_after_decimal % 10]) . ' Paise' : '';
+                        return ($implode_to_Rupees ? $implode_to_Rupees . ' ' : '') . $get_paise;
+                        }
+
+
                         // call the function here
                         $amt_words=$total_amount;
                         // nummeric value in variable
@@ -519,7 +545,29 @@ if(isset($_GET['invoice_no'])){
         </div>
     </div>
 </div>
+</div>
 <?php } ?>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+            html2canvas($('#tblCustomers')[0], {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        pageMargins: [2, 2, 2, 2],
+                        content: [{
+                            image: data,
+                            width: 590
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("SWINC.pdf");
+                }
+            });
+        });
+    </script>
 
 <?php 
 
