@@ -548,31 +548,22 @@ if(isset($_GET['invoice_no'])){
 </div>
 <?php } ?>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vfs_fonts/0.4.1/vfs_fonts.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-            html2canvas($('#tblCustomers')[0], {
-                onrendered: function (canvas) {
-                    var data = canvas.toDataURL();
-                    var docDefinition = {
-                        pageMargins: [2, 2, 2, 2],
-                        content: [{
-                            image: data,
-                            fit: [100, 100]
-                        }]
-                    };
-                    // const doc = pdfMake.createPdf(docDefinition); doc.getBase64((data) => { window.location.href = 'data:application/pdf;base64,' + data; });
-                    pdfMake.createPdf(docDefinition).download("SWINC.pdf");
-                }
-            });
-        });
-    </script>
-
 <?php 
 
 include("includes/footer.php");
 
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+<script>
+    $(document).ready(function () {
+        let pdf = new jsPDF();
+    let section=$('body');
+    let page= function() {
+        pdf.save('pagename.pdf');
+    
+    };
+    pdf.addHTML(section,page);
+    });
+</script>
