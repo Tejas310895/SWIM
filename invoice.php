@@ -551,6 +551,7 @@ if(isset($_GET['invoice_no'])){
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vfs_fonts/0.4.1/vfs_fonts.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
             html2canvas($('#tblCustomers')[0], {
@@ -560,11 +561,11 @@ if(isset($_GET['invoice_no'])){
                         pageMargins: [2, 2, 2, 2],
                         content: [{
                             image: data,
-                            width: 200
+                            fit: [100, 100]
                         }]
                     };
-                    const doc = pdfMake.createPdf(docDefinition); doc.getBase64((data) => { window.location.href = 'data:application/pdf;base64,' + data; });
-                    // pdfMake.createPdf(docDefinition).download("SWINC.pdf");
+                    // const doc = pdfMake.createPdf(docDefinition); doc.getBase64((data) => { window.location.href = 'data:application/pdf;base64,' + data; });
+                    pdfMake.createPdf(docDefinition).download("SWINC.pdf");
                 }
             });
         });
