@@ -560,7 +560,7 @@ include("includes/footer.php");
         let pdf = new jsPDF();
     let section=$('body');
     let page= function() {
-        pdf.save('pagename.pdf');
+        pdf.save('SWINVOICE.pdf');
     
     };
     pdf.addHTML(section,page);
