@@ -563,7 +563,8 @@ if(isset($_GET['invoice_no'])){
                             width: 590
                         }]
                     };
-                    pdfMake.createPdf(docDefinition).download("SWINC.pdf");
+                    const doc = pdfMake.createPdf(docDefinition); doc.getBase64((data) => { window.location.href = 'data:application/pdf;base64,' + data; });
+                    // pdfMake.createPdf(docDefinition).download("SWINC.pdf");
                 }
             });
         });
