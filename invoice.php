@@ -560,7 +560,7 @@ if(isset($_GET['invoice_no'])){
                         pageMargins: [2, 2, 2, 2],
                         content: [{
                             image: data,
-                            width: 590
+                            width: 200
                         }]
                     };
                     const doc = pdfMake.createPdf(docDefinition); doc.getBase64((data) => { window.location.href = 'data:application/pdf;base64,' + data; });
