@@ -15,9 +15,9 @@ if(!isset($_SESSION['admin_user'])){
   <li class="nav-item">
     <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Product Inventory</a>
   </li>
-  <!-- <li class="nav-item">
+  <li class="nav-item <?php if($_SESSION['admin_user']==="shirsatbp@gmail.com"){echo "show";}else{echo "d-none";} ?>">
     <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-sale" role="tab" aria-controls="pills-sale" aria-selected="false">Sale Inventory</a>
-  </li> -->
+  </li>
 </ul>
 <div class="tab-content border-0" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
