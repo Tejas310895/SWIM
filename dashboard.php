@@ -155,7 +155,7 @@ if(!isset($_SESSION['admin_user'])){
           $display_delivery_date = date('M-Y',strtotime($year_month));
         
         ?>
-          <div class="card">
+          <div class="card m-2">
             <div class="card-header" id="headingOne">
               <h5 class="mb-0">
                 <button class="btn btn-info btn-lg btn-block" data-toggle="collapse" data-target="#mou<?php echo $mou_date;?>" aria-expanded="true" aria-controls="collapseOne">
@@ -176,8 +176,18 @@ if(!isset($_SESSION['admin_user'])){
                     </thead>
                     <tbody>
                         <?php 
+
+                          $invoice_array = array();
+
+                          $get_invoice_array = "select * from invoice where EXTRACT(YEAR_MONTH FROM invoice_date)='$mou_date'";
+                          $run_invoice_array = mysqli_query($con,$get_invoice_array);
+                          while ($row_invoice_array=mysqli_fetch_array($run_invoice_array)) {
+                            $array_invoice_no = $row_invoice_array['invoice_no'];
+
+                            array_push($invoice_array, $array_invoice_no);
+                          }
                         
-                          $get_inc_comp = "select * from invoice_products where EXTRACT(YEAR_MONTH FROM invoice_product_created_at)='$mou_date' group by LEFT(invoice_no, 2)";
+                          $get_inc_comp = "select * from invoice_products where invoice_no IN ('".implode("','",$invoice_array)."') group by LEFT(invoice_no, 2)";
                           $run_inc_comp = mysqli_query($con,$get_inc_comp);
                           while($row_inc_comp=mysqli_fetch_array($run_inc_comp)){
 
@@ -197,9 +207,10 @@ if(!isset($_SESSION['admin_user'])){
                             </tr>
                             
                             ";
-                          $get_inc_products = "select * from invoice_products where EXTRACT(YEAR_MONTH FROM invoice_product_created_at)='$mou_date' and LEFT(invoice_no, 2)='$comp' group by carton_id";
+                          $get_inc_products = "select * from invoice_products where invoice_no IN ('".implode("','",$invoice_array)."') and LEFT(invoice_no, 2)='$comp' group by carton_id";
                           $run_inc_products = mysqli_query($con,$get_inc_products);
                           $counter = 0;
+                          $total_s_qty = 0;
                           while($row_inc_products=mysqli_fetch_array($run_inc_products)){
                             $carton_id = $row_inc_products['carton_id'];
                             $unit_rate = $row_inc_products['unit_rate'];
@@ -211,11 +222,13 @@ if(!isset($_SESSION['admin_user'])){
 
                             $carton_name = $row_carton_name['carton_title'];
 
-                            $get_sold_qty = "select sum(carton_qty) as sold_qty from invoice_products where EXTRACT(YEAR_MONTH FROM invoice_product_created_at)='$mou_date' and LEFT(invoice_no, 2)='$comp' and carton_id='$carton_id'";
+                            $get_sold_qty = "select sum(carton_qty) as sold_qty from invoice_products where invoice_no IN ('".implode("','",$invoice_array)."') and LEFT(invoice_no, 2)='$comp' and carton_id='$carton_id'";
                             $run_sold_qty = mysqli_query($con,$get_sold_qty);
                             $row_sold_qty = mysqli_fetch_array($run_sold_qty);
 
                             $sold_qty = $row_sold_qty['sold_qty'];
+                            
+                            $total_s_qty += $sold_qty;
                         ?>
                         <tr>
                         <td><?php echo ++$counter; ?></td>
@@ -223,6 +236,10 @@ if(!isset($_SESSION['admin_user'])){
                         <td><?php echo $sold_qty; ?></td>
                         </tr>
                         <?php } ?>
+                        <tr>
+                          <th colspan="2" class="text-center">Total</th>
+                          <th><?php echo $total_s_qty; ?></th>
+                        </tr>
                         <?php } ?>
                     </tbody>
                   </table>
