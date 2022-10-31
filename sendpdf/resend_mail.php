@@ -227,7 +227,7 @@ if (isset($_GET['mail_sent'])) {
                     <td class=" p-1"> 
                     ';
                 $output .= $item_name;
-                $output .= '<small>(
+                $output .= '<br><small>(
                     ';
                 $output .= $item_desc;
                 $output .= '
