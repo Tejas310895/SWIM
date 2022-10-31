@@ -14,8 +14,8 @@ if (isset($_GET['mail_sent'])) {
     // $customer_email = 'tshirsat700@gmail.com';
     $message = '';
 
-    $connect = mysqli_connect('localhost:3308', 'root', '', 'swaf');
-    // $connect = mysqli_connect('localhost', 'u708087849_swaf', 'Silverwrap@11', 'u708087849_swaf');
+    // $connect = mysqli_connect('localhost:3308', 'root', '', 'swaf');
+    $connect = mysqli_connect('localhost', 'u708087849_swaf', 'Silverwrap@11', 'u708087849_swaf');
 
     $get_inc_ref = "select * from po_entries where po_number='$mail_inc_id'";
     $run_inc_ref = mysqli_query($connect, $get_inc_ref);
@@ -456,15 +456,16 @@ if (isset($_GET['mail_sent'])) {
         <tr>
         <th colspan="2">
             <h4><u>Note :</u></h4>
-            ';
-        $output .= $po_note;
-        $output .= '
+            <h5>
+            * This Purchase Order is valid till 30 days from Order date. <br>
+            * Please quote our Order No. and date in all correspondence pertaining to this order.<br>
+            * Supplied material should meet statutory & regulatory requirement.
+            </h5>
         </th>
         <th colspan="1">
             <h4><u>Additional Comments :-</u></h4>
-            ';
-        $output .= $po_comment;
-        $output .= '
+            <h5>All Materials are urgent,Kindly process
+            immediate for delivery on time.</h5>
         </th>
         </tr>
         <tr style="text-align:center;font-weight:bold;">

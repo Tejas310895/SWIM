@@ -162,8 +162,8 @@
                 ?>
             </select>
             <input type="text" name="raw_product_desc[]" id="raw_product_desc" class="form-control" placeholder="Enter product description" required />
-            <input type="number" name="raw_product_qty[]" id="raw_product_qty" class="form-control" placeholder="Enter Qty required" required />
-            <input type="number" name="raw_product_unit_rate[]" id="raw_product_unit_rate" class="form-control" placeholder="Enter unit rate" required />
+            <input type="number" step="any" name="raw_product_qty[]" id="raw_product_qty" class="form-control" placeholder="Enter Qty required" required />
+            <input type="number" step="any" name="raw_product_unit_rate[]" id="raw_product_unit_rate" class="form-control" placeholder="Enter unit rate" required />
             <input type="number" name="raw_product_gst_rate[]" id="raw_product_gst_rate" class="form-control" placeholder="Enter gst rate" required />
             <div class="input-group-addon mx-3 mt-1">
                 <a href="javascript:void(0)" class="btn btn-success addMore"><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a>
@@ -218,8 +218,8 @@
             ?>
         </select>
         <input type="text" name="raw_product_desc[]" id="raw_product_desc" class="form-control" placeholder="Enter product description" required />
-        <input type="number" name="raw_product_qty[]" id="raw_product_qty" class="form-control" placeholder="Enter Qty required" required />
-        <input type="number" name="raw_product_unit_rate[]" id="raw_product_unit_rate" class="form-control" placeholder="Enter unit rate" required />
+        <input type="number" step="any" name="raw_product_qty[]" id="raw_product_qty" class="form-control" placeholder="Enter Qty required" required />
+        <input type="number" step="any" name="raw_product_unit_rate[]" id="raw_product_unit_rate" class="form-control" placeholder="Enter unit rate" required />
         <input type="number" name="raw_product_gst_rate[]" id="raw_product_gst_rate" class="form-control" placeholder="Enter gst rate %" required />
         <div class="input-group-addon mx-4 mt-1">
             <a href="javascript:void(0)" class="btn btn-danger remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>X</a>
@@ -305,7 +305,7 @@ if (isset($_POST['add_raw_enquiry'])) {
     if ($run_purchase_enquiry) {
         // include('./sendpdf/index.php');
         echo "<script>alert('Entry Done and mail sent')</script>";
-        echo "<script>window.open('index.php?purchase_enquiry','_self')</script>";
+        echo "<script>window.open('index.php?view_poentry','_self')</script>";
     } else {
         echo "<script>alert('Failed, Try again')</script>";
     }
