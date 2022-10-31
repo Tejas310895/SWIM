@@ -72,6 +72,7 @@
                                                             $item_qty = $unserialized_array[$i][1];
                                                             $unit_rate = $unserialized_array[$i][2];
                                                             $gst_rate = $unserialized_array[$i][3];
+                                                            $item_desc = $unserialized_array[$i][4];
 
                                                             $gst_amount = ($unit_rate * $item_qty) * ($gst_rate / 100);
                                                             $taxable_amount = $unit_rate * $item_qty;
@@ -85,9 +86,12 @@
                                                             $raw_title = $row_raw_id['item_name'];
                                                             $raw_unit = $row_raw_id['item_unit'];
 
+
                                                             echo "
                                                             <tr>
-                                                                <td class='text-bold-500'>$raw_title</td>
+                                                                <td class='text-bold-500'>$raw_title <br>
+                                                                <small>($item_desc)</small>
+                                                                </td>
                                                                 <td>$item_qty $raw_unit</td>
                                                                 <td>$unit_rate</td>
                                                                 <td>$gst_rate</td>
