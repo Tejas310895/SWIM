@@ -519,10 +519,10 @@ if (isset($_GET['mail_sent'])) {
     if ($mail->Send())                                //Send an Email. Return true on success or false on error
     {
         echo "<script>alert('Mail Sent to customer')</script>";
-        echo "<script>window.open('./index.php?view_poentry','_self')</script>";
+        echo "<script>window.open('../index.php?view_poentry','_self')</script>";
     } else {
         echo "<script>alert('Mail Error! Try again')</script>";
-        echo "<script>window.open('../index.php?sales_invoices','_self')</script>";
+        echo "<script>window.open('../index.php?view_poentry','_self')</script>";
         echo 'Mailer Error: ' . $mail->ErrorInfo;
     }
     unlink($file_name);
