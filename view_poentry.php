@@ -35,7 +35,7 @@
                         $row_vendor = mysqli_fetch_array($run_vendor);
                     ?>
                         <tr>
-                            <td><?php echo date('d-M-y / H:i a', strtotime($row_purchase_entries['po_date'])); ?></td>
+                            <td><?php echo date('d-M-y', strtotime($row_purchase_entries['po_date'])); ?></td>
                             <td class="text-uppercase"><?php echo $row_vendor['shop_title']; ?></td>
                             <td><?php echo $row_purchase_entries['vendor_email']; ?></td>
                             <td><?php echo date('d-M-y', strtotime($row_purchase_entries['po_shcedule'])); ?></td>
