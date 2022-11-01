@@ -146,15 +146,7 @@ if (isset($_GET['mail_sent'])) {
         $output .=            '<br>';
         $output .=            $vendor_address;
         $output .= '</h5>
-                    <h5>Ph: 
-                    
                     ';
-
-        $output .= $vendor_contact;
-
-        $output .= '
-                    
-                    </h5>';
         $output .= '
                 </th>
                 <th>
@@ -164,9 +156,8 @@ if (isset($_GET['mail_sent'])) {
         $output .= $partner_address . '<br>';
         $output .= $partner_state . ' (State Code : ' . $partner_state_code . ')<br>';
         $output .= '<strong>Ship to :<strong><br>';
-        $output .= $shop_title . '<br>';
-        $output .= $vendor_address . '<br>';
-        $output .= $vendor_state . ' (State Code : ' . $vendor_state_code . ')';
+        $output .= 'Unit.No 20 Building.No.D8 Bhumi World - Industrial Park, Pimplas Village, 
+        Mumbai-Nashik Highway, Bhiwandi, Maharashtra 421302';
         $output .= '
                     </h5>
                 </th>
