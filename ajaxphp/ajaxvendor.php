@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 include("../includes/db.php");
 
-if(isset($_POST['add_vendor'])){
+if (isset($_POST['add_vendor'])) {
     $shop_title = $_POST['shop_title'];
     $item_desc = $_POST['item_desc'];
     $vendor_gstn = $_POST['vendor_gstn'];
@@ -32,13 +32,13 @@ if(isset($_POST['add_vendor'])){
                                             '$today',
                                             '$today'
                                             )";
-    $run_vendor = mysqli_query($con,$insert_vendor);
+    $run_vendor = mysqli_query($con, $insert_vendor);
 
-    if($run_vendor){
+    if ($run_vendor) {
         echo "<div class='alert alert-success' role='alert' id='vendor_success'>
         <strong>Done!</strong> Your Vendor is added successfully.
       </div>";
-    }else{
+    } else {
         echo "
         <div class='alert alert-Danger' role='alert' id='vendor_failed'>
         <strong>Error!</strong> Failed to add the vendor try again.
@@ -47,7 +47,7 @@ if(isset($_POST['add_vendor'])){
     }
 }
 
-if(isset($_POST['add_raw'])){
+if (isset($_POST['add_raw'])) {
     $item_type = $_POST['item_type'];
     $item_name = $_POST['item_name'];
     $item_unit = $_POST['item_unit'];
@@ -75,13 +75,13 @@ if(isset($_POST['add_raw'])){
                                         '0',
                                         '$today',
                                         '$today')";
-    $run_raw = mysqli_query($con,$insert_raw);
+    $run_raw = mysqli_query($con, $insert_raw);
 
-    if($run_raw){
+    if ($run_raw) {
         echo "<div class='alert alert-success' role='alert' id='vendor_success'>
         <strong>Done!</strong> Your Item is added successfully.
       </div>";
-    }else{
+    } else {
         echo "
         <div class='alert alert-Danger' role='alert' id='vendor_failed'>
         <strong>Error!</strong> Failed to add the Item try again.
@@ -90,7 +90,7 @@ if(isset($_POST['add_raw'])){
     }
 }
 
-if(isset($_POST['raw_entry'])){
+if (isset($_POST['raw_entry'])) {
     $vendor_id = $_POST['vendor_id'];
     $item_id = $_POST['item_id'];
     $item_qty = $_POST['item_qty'];
@@ -123,17 +123,17 @@ if(isset($_POST['raw_entry'])){
                                             '$item_extra',
                                             '$today',
                                             '$today')";
-    $run_entry = mysqli_query($con,$insert_entry);
+    $run_entry = mysqli_query($con, $insert_entry);
 
-        $update_stock = "update raw_items set item_stock=item_stock+'$item_qty' where item_id='$item_id'";
+    $update_stock = "update raw_items set item_stock=item_stock+'$item_qty' where item_id='$item_id'";
 
-        $run_update_stock = mysqli_query($con,$update_stock);
+    $run_update_stock = mysqli_query($con, $update_stock);
 
-    if($run_entry){
+    if ($run_entry) {
         echo "<div class='alert alert-success' role='alert' id='vendor_success'>
         <strong>Done!</strong> Your Entry is Updated successfully.
       </div>";
-    }else{
+    } else {
         echo "
         <div class='alert alert-Danger' role='alert' id='vendor_failed'>
         <strong>Error!</strong> Failed to Update the entry try again.
@@ -142,7 +142,7 @@ if(isset($_POST['raw_entry'])){
     }
 }
 
-if(isset($_POST['raw_exchange'])){
+if (isset($_POST['raw_exchange'])) {
     $exchange_vendor_id = $_POST['exchange_vendor_id'];
     $exchange_item_id = $_POST['exchange_item_id'];
     $exchange_item_qty = $_POST['exchange_item_qty'];
@@ -153,12 +153,12 @@ if(isset($_POST['raw_exchange'])){
     $today = date("Y-m-d H:i:s");
 
     $get_stock = "select * from raw_items where item_id='$exchange_item_id'";
-    $run_stock = mysqli_query($con,$get_stock);
+    $run_stock = mysqli_query($con, $get_stock);
     $row_stock = mysqli_fetch_array($run_stock);
 
     $item_stock = $row_stock['item_stock'];
 
-    if($exchange_item_qty<=$item_stock){
+    if ($exchange_item_qty <= $item_stock) {
 
         $insert_exchange = "insert into exchange_entry (vendor_id,
                                                         item_id,
@@ -169,25 +169,24 @@ if(isset($_POST['raw_exchange'])){
                                                         '$exchange_item_id',
                                                         '$exchange_item_qty',
                                                         '$today')";
-        $run_exchange = mysqli_query($con,$insert_exchange);
+        $run_exchange = mysqli_query($con, $insert_exchange);
 
-            $update_stock = "update raw_items set item_stock=item_stock-'$exchange_item_qty' where item_id='$exchange_item_id'";
+        $update_stock = "update raw_items set item_stock=item_stock-'$exchange_item_qty' where item_id='$exchange_item_id'";
 
-            $run_update_stock = mysqli_query($con,$update_stock);
+        $run_update_stock = mysqli_query($con, $update_stock);
 
-        if($run_exchange){
+        if ($run_exchange) {
             echo "<div class='alert alert-success' role='alert' id='vendor_success'>
             <strong>Done!</strong> Your Entry is Updated successfully.
         </div>";
-        }else{
+        } else {
             echo "
             <div class='alert alert-Danger' role='alert' id='vendor_failed'>
             <strong>Error!</strong> Failed to Update the entry try again.
             </div>
             ";
         }
-
-    }else{
+    } else {
         echo "
         <div class='alert alert-Danger' role='alert' id='vendor_failed'>
         <strong>Error!</strong> Stock Unavailable
@@ -196,11 +195,11 @@ if(isset($_POST['raw_exchange'])){
     }
 }
 
-if(isset($_POST['unit_change_id'])){
+if (isset($_POST['unit_change_id'])) {
     $item_id = $_POST['unit_change_id'];
 
     $get_unit = "select * from raw_items where item_id='$item_id'";
-    $run_unit = mysqli_query($con,$get_unit);
+    $run_unit = mysqli_query($con, $get_unit);
     $row_unit = mysqli_fetch_array($run_unit);
 
     $item_unit = $row_unit['item_unit'];
@@ -208,4 +207,45 @@ if(isset($_POST['unit_change_id'])){
     echo $item_unit;
 }
 
-?>
+if (isset($_POST['vendor_id'])) {
+
+    $vendor_id = $_POST['vendor_id'];
+
+    $get_supplier_email = "select * from vendors where vendor_id='$vendor_id'";
+    $run_supplier_email = mysqli_query($con, $get_supplier_email);
+    $row_supplier_email = mysqli_fetch_array($run_supplier_email);
+
+    echo $row_supplier_email['vendor_email'];
+}
+
+if (isset($_GET['delete_enquiry'])) {
+
+    $purchase_enquiry_id = $_GET['delete_enquiry'];
+
+    $delete_purchase_enquiry = "delete from po_entries where po_id='$purchase_enquiry_id'";
+    $run_delete_purchase_enquiry = mysqli_query($con, $delete_purchase_enquiry);
+
+    if ($run_delete_purchase_enquiry) {
+        echo "<script>alert('Entry Cancelled')</script>";
+        echo "<script>window.open('../index.php?view_poentry','_self')</script>";
+    } else {
+        echo "<script>alert('Entry Update Failed')</script>";
+        echo "<script>window.open('../index.php?view_poentry','_self')</script>";
+    }
+}
+
+if (isset($_GET['update_enquiry'])) {
+
+    $purchase_enquiry_id = $_GET['update_enquiry'];
+
+    $delete_purchase_enquiry = "update po_entries set po_delivery_status='shipped' where po_id='$purchase_enquiry_id'";
+    $run_delete_purchase_enquiry = mysqli_query($con, $delete_purchase_enquiry);
+
+    if ($run_delete_purchase_enquiry) {
+        echo "<script>alert('Entry Updated')</script>";
+        echo "<script>window.open('../index.php?view_poentry','_self')</script>";
+    } else {
+        echo "<script>alert('Entry Update Failed')</script>";
+        echo "<script>window.open('../index.php?view_poentry','_self')</script>";
+    }
+}
