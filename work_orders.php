@@ -29,7 +29,7 @@
                             <td><?php echo date('d-M-Y H:i A', strtotime($row_work_orders['work_order_task_created_at'])); ?></td>
                             <td><?php echo $row_work_orders['work_order_ref_no']; ?></td>
                             <td class="text-center">
-                                <a href="work_order_print?work_order_print=<?php echo $row_work_orders['work_order_entry_id']; ?>" target="_blank" class="btn btn-info">Print</a>
+                                <a href="work_order_print.php?work_order_print=<?php echo $row_work_orders['work_order_entry_id']; ?>" class="btn btn-info">Print</a>
                             </td>
                         </tr>
                     <?php } ?>

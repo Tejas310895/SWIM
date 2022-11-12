@@ -77,7 +77,7 @@ if (isset($_GET['work_order_print'])) {
         }
 
         window.onafterprint = function() {
-            // window.location = 'index.php?work_orders';
+            self.location = 'index.php?work_orders';
         }
     </script>
     <script>
@@ -91,48 +91,40 @@ if (isset($_GET['work_order_print'])) {
 
     <div class="pagebreak mt-1 ml-1">
         <table class="text-dark">
-            <thead>
+            <tbody>
                 <tr class="text-left">
                     <th>Ref number</th>
                     <td><?php echo $work_order_ref_no; ?></td>
-                </tr>
-                <tr class="text-left">
                     <th>Grams/Metre</th>
                     <td><?php echo $work_order_pro_det[0]; ?></td>
+
                 </tr>
                 <tr class="text-left">
                     <th>Micron</th>
                     <td><?php echo $work_order_pro_det[1]; ?></td>
-                </tr>
-                <tr class="text-left">
                     <th>Paper Tube</th>
                     <td><?php echo $work_order_pro_det[2]; ?></td>
                 </tr>
                 <tr class="text-left">
                     <th>Inner Box</th>
                     <td><?php echo $work_order_pro_det[3]; ?></td>
-                </tr>
-                <tr class="text-left">
                     <th>MRP</th>
                     <td><?php echo $work_order_pro_det[4]; ?></td>
                 </tr>
                 <tr class="text-left">
                     <th>Total Box</th>
                     <td><?php echo $work_order_pro_det[5]; ?></td>
-                </tr>
-                <tr class="text-left">
                     <th>Customer</th>
                     <td><?php echo $work_order_pro_det[6]; ?></td>
                 </tr>
                 <tr class="text-left">
                     <th>Date</th>
                     <td><?php echo $work_order_date; ?></td>
-                </tr>
-                <tr class="text-left">
                     <th>Note</th>
                     <td><?php echo $work_order_note; ?></td>
                 </tr>
-            </thead>
+
+            </tbody>
         </table>
     </div>
     <?php
@@ -140,3 +132,25 @@ if (isset($_GET['work_order_print'])) {
     include("includes/footer.php");
 
     ?>
+
+    <script type="text/javascript">
+        google.load("elements", "1", {
+            packages: "transliteration"
+        });
+        var control;
+
+        function onLoad() {
+            var options = {
+                //Source Language
+                sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
+                // Destination language to Transliterate
+                destinationLanguage: [google.elements.transliteration.LanguageCode.HINDI],
+                shortcutKey: 'ctrl+g',
+                transliterationEnabled: true
+            };
+            control = new google.elements.transliteration.TransliterationControl(options);
+            control.makeTransliteratable(['txtMessage']);
+        }
+        google.setOnLoadCallback(onLoad);
+    </script>
+    <script type="text/javascript" src="https://fellowtuts.com/tryit/uploads/js/gtransapi.js"></script>
