@@ -24,7 +24,7 @@
                 <tbody>
                     <?php
 
-                    $get_purchase_entries = "select * from po_entries order by po_date ASC";
+                    $get_purchase_entries = "select * from po_entries order by po_id desc";
                     $run_purchase_entries = mysqli_query($con, $get_purchase_entries);
                     while ($row_purchase_entries = mysqli_fetch_array($run_purchase_entries)) {
 
