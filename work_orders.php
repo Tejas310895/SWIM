@@ -21,7 +21,7 @@
                 <tbody>
                     <?php
 
-                    $get_work_orders = "select * from work_order_task where work_order_status='active'";
+                    $get_work_orders = "select * from work_order_task where work_order_status='active' order by work_order_entry_id desc";
                     $run_work_orders = mysqli_query($con, $get_work_orders);
                     while ($row_work_orders = mysqli_fetch_array($run_work_orders)) {
                     ?>
