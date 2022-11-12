@@ -77,7 +77,7 @@ if (isset($_GET['work_order_print'])) {
         }
 
         window.onafterprint = function() {
-            self.location = 'index.php?work_orders';
+            window.history.go(-1);
         }
     </script>
     <script>
