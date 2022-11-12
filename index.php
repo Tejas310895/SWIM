@@ -223,6 +223,16 @@ if (!isset($_SESSION['admin_user'])) {
             include("create_rawexchange.php");
           }
 
+          if (isset($_GET['work_orders'])) {
+
+            include("work_orders.php");
+          }
+
+          if (isset($_GET['new_work_order'])) {
+
+            include("new_work_order.php");
+          }
+
           ?>
           <!-- content-wrapper ends -->
           <?php
