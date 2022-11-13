@@ -161,8 +161,8 @@ if (isset($_POST['add_work_order'])) {
             echo "<script>alert('Done')</script>";
             echo "<script>window.open('index.php?work_orders','_self')</script>";
         } else {
-            echo mysqli_errno($con);
-            // echo "<script>alert('Failed, Try again $work_order_ref_no')</script>";
+            echo "<script>alert('Failed, Try again $work_order_ref_no')</script>";
+            echo "<script>window.open('index.php?work_orders','_self')</script>";
         }
     } else {
         echo "<script>alert('Same Ref No., Please try again')</script>";

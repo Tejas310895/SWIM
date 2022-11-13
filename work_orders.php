@@ -30,6 +30,7 @@
                             <td><?php echo $row_work_orders['work_order_ref_no']; ?></td>
                             <td class="text-center">
                                 <a href="work_order_print.php?work_order_print=<?php echo $row_work_orders['work_order_entry_id']; ?>" class="btn btn-info">Print</a>
+                                <a href="ajaxphp/ajaxhelper.php?work_order_delete=<?php echo $row_work_orders['work_order_entry_id']; ?>" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     <?php } ?>
