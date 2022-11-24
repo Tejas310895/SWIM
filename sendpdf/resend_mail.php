@@ -181,14 +181,13 @@ if (isset($_GET['mail_sent'])) {
         $get_inc_pro = "select * from po_entries where po_number='$mail_inc_id'";
         $run_inc_pro = mysqli_query($connect, $get_inc_pro);
         $pro_counter = 0;
-        $total_amount = 0;
         while ($row_inc_pro = mysqli_fetch_array($run_inc_pro)) {
 
             $raw_product_array = $row_inc_pro['raw_product_array'];
 
             $unserialized_array = unserialize($raw_product_array);
             $array_size = (count($unserialized_array) - 1);
-
+            $total_amount = 0;
             for ($i = 0; $i <= $array_size; $i++) {
 
                 $item_id = $unserialized_array[$i][0];
