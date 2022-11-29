@@ -349,10 +349,10 @@ if (isset($_GET['mail_sent'])) {
                     $igst_amount_hsn_ex += $taxable_amount * ($gst_rate / 100);
                 }
                 $grand_taxable_ex += $taxable_amount;
-                $grand_cgst_ex += $cgst_amount_hsn_ex;
-                $grand_sgst_ex += $sgst_amount_hsn_ex;
-                $grand_igst_ex += $igst_amount_hsn_ex;
             }
+            $grand_cgst_ex += $cgst_amount_hsn_ex;
+            $grand_sgst_ex += $sgst_amount_hsn_ex;
+            $grand_igst_ex += $igst_amount_hsn_ex;
         }
         $output .= '																		
         
