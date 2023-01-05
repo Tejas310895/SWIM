@@ -23,6 +23,13 @@ if (!isset($_SESSION['admin_user'])) {
     <li class="nav-item">
       <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-work_order" role="tab" aria-controls="pills-work_order" aria-selected="false">Work Order</a>
     </li>
+    <li class="nav-item <?php if ($_SESSION['admin_user'] === "shirsatbp@gmail.com") {
+                          echo "show";
+                        } else {
+                          echo "d-none";
+                        } ?>">
+      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-accounts" role="tab" aria-controls="pills-accounts" aria-selected="false">Accounting</a>
+    </li>
   </ul>
   <div class="tab-content border-0" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
@@ -306,6 +313,109 @@ if (!isset($_SESSION['admin_user'])) {
             </div>
 
           </section>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="pills-accounts" role="tabpanel" aria-labelledby="pills-accounts">
+      <div class="row">
+        <div id="accordion" class="w-100">
+          <?php
+
+          $get_uni_month = "SELECT EXTRACT(YEAR_MONTH FROM invoice_product_created_at) AS mou from invoice_products group by EXTRACT(YEAR_MONTH FROM invoice_product_created_at) order by invoice_product_id desc";
+          $run_uni_month = mysqli_query($con, $get_uni_month);
+          while ($row_uni_month = mysqli_fetch_array($run_uni_month)) {
+
+            $mou_date = $row_uni_month['mou'];
+            $month = substr($mou_date, -2);
+            $Year = substr($mou_date, 0, 4);
+            $year_month = $Year . "-" . $month;
+            $display_delivery_date = date('M-Y', strtotime($year_month));
+
+          ?>
+            <div class="card m-2">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-info btn-lg btn-block" data-toggle="collapse" data-target="#mou<?php echo $mou_date; ?>" aria-expanded="true" aria-controls="collapseOne">
+                    <h5 clas="mb-0">ACCOUNTING DATA FOR MONTH <?php echo $display_delivery_date; ?></h5>
+                  </button>
+                </h5>
+              </div>
+              <div id="mou<?php echo $mou_date; ?>" class="collapse" aria-labelledby="headingOne" data-parent="#mou<?php echo $mou_date; ?>">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                          <th>SALE</th>
+                          <th>SALE GST</th>
+                          <th>PURCHASE</th>
+                          <th>PURCHASE GST</th>
+                          <th>TAX DIFFERENCE</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+
+                        $invoice_array = array();
+
+                        $get_invoice_array = "select * from invoice where EXTRACT(YEAR_MONTH FROM invoice_date)='$mou_date'";
+                        $run_invoice_array = mysqli_query($con, $get_invoice_array);
+                        while ($row_invoice_array = mysqli_fetch_array($run_invoice_array)) {
+                          $array_invoice_no = $row_invoice_array['invoice_no'];
+
+                          array_push($invoice_array, $array_invoice_no);
+                        }
+
+                        $get_inc_comp = "select * from invoice_products where invoice_no IN ('" . implode("','", $invoice_array) . "') group by LEFT(invoice_no, 2)";
+                        $run_inc_comp = mysqli_query($con, $get_inc_comp);
+                        while ($row_inc_comp = mysqli_fetch_array($run_inc_comp)) {
+
+                          $inc_comp = $row_inc_comp['invoice_no'];
+                          $comp = substr($inc_comp, 0, 2);
+
+                          $get_comp_name = "select * from partners where LEFT(partner_title, 2)='$comp'";
+                          $run_comp_name = mysqli_query($con, $get_comp_name);
+                          $row_comp_name = mysqli_fetch_array($run_comp_name);
+
+                          $partner_id = $row_comp_name['partner_id'];
+                          $partner_title = $row_comp_name['partner_title'];
+
+                          echo "
+                            
+                            <tr>
+                              <th colspan='5' class='text-center text-uppercase bg-danger'>$partner_title</th>
+                            </tr>
+                            
+                            ";
+                          $get_inc_products = "select sum(unit_rate*carton_qty) as sold_qty,sum((unit_rate*carton_qty)*(gst_rate/100)) as gst_amt from invoice_products where invoice_no IN ('" . implode("','", $invoice_array) . "') and LEFT(invoice_no, 2)='$comp' group by LEFT(invoice_no, 2)";
+                          $run_inc_products = mysqli_query($con, $get_inc_products);
+                          $row_inc_products = mysqli_fetch_array($run_inc_products);
+                          $sold_qty = $row_inc_products['sold_qty'];
+                          $gst_amt = $row_inc_products['gst_amt'];
+
+                          $get_inc_pur = "select sum(taxable) as pur_qty,sum((taxable)*(gst_rate/100)) as gst_amt from purchase_filling where EXTRACT(YEAR_MONTH FROM filling_date)='$mou_date' and partner_id='$partner_id' group by partner_id";
+                          $run_inc_pur = mysqli_query($con, $get_inc_pur);
+                          $row_inc_pur = mysqli_fetch_array($run_inc_pur);
+                          $pur_qty = $row_inc_pur['pur_qty'];
+                          $pur_gst_amt = $row_inc_pur['gst_amt'];
+
+                          $tax_diff = $gst_amt - $pur_gst_amt;
+                        ?>
+                          <tr>
+                            <td><?php echo round($sold_qty, 2); ?></td>
+                            <td><?php echo round($gst_amt, 2); ?></td>
+                            <td><?php echo round($pur_qty, 2); ?></td>
+                            <td><?php echo round($pur_gst_amt, 2); ?></td>
+                            <td><?php echo round($tax_diff, 2); ?></td>
+                          </tr>
+                        <?php } ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php } ?>
         </div>
       </div>
     </div>

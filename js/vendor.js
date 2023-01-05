@@ -191,3 +191,34 @@ $('#vendor_id').change(function (e) {
         }
     });
 });
+
+$("#insert_pur_filling").submit(function (e) {
+    e.preventDefault();
+    var pur_inc_no = $("#pur_inc_no").val();
+    var pur_taxable = $("#pur_taxable").val();
+    var pur_gst_rate = $("#pur_gst_rate").val();
+    var pur_date = $("#pur_date").val();
+    var pur_vendor_id = $("#pur_vendor_id").val();
+    var pur_partner_id = $("#pur_partner_id").val();
+    var pur_desc = $("#pur_desc").val();
+    $.ajax({
+        type: "post",
+        url: "./ajaxphp/ajaxvendor.php",
+        data: {
+            "pur_inc_no": pur_inc_no,
+            "pur_vendor_id": pur_vendor_id,
+            "pur_taxable": pur_taxable,
+            "pur_gst_rate": pur_gst_rate,
+            "pur_date": pur_date,
+            "pur_partner_id": pur_partner_id,
+            "pur_desc": pur_desc
+        },
+        success: function (response) {
+            $('#entry_alerts').html(response);
+            $("#insert_pur_filling")[0].reset();
+            $("#entry_alerts").fadeTo(3000, 500).slideUp(500, function () {
+                $("#entry_alerts").slideUp(500);
+            });
+        }
+    });
+});

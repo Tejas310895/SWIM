@@ -233,6 +233,16 @@ if (!isset($_SESSION['admin_user'])) {
             include("new_work_order.php");
           }
 
+          if (isset($_GET['purchase_filing'])) {
+
+            include("purchase_filing.php");
+          }
+
+          if (isset($_GET['new_purchase_filing'])) {
+
+            include("new_purchase_filing.php");
+          }
+
           ?>
           <!-- content-wrapper ends -->
           <?php

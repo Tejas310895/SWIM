@@ -249,3 +249,44 @@ if (isset($_GET['update_enquiry'])) {
         echo "<script>window.open('../index.php?view_poentry','_self')</script>";
     }
 }
+
+if (isset($_POST['pur_inc_no'])) {
+    $today = date("Y-m-d H:i:s");
+    $pur_inc_no = $_POST['pur_inc_no'];
+    $pur_taxable = $_POST['pur_taxable'];
+    $pur_vendor_id = $_POST['pur_vendor_id'];
+    $pur_gst_rate = $_POST['pur_gst_rate'];
+    $pur_date = $_POST['pur_date'];
+    $pur_partner_id = $_POST['pur_partner_id'];
+    $pur_desc = $_POST['pur_desc'];
+
+    $insert_pur_filling = "INSERT INTO purchase_filling (invoice_no,
+                                                        vendor_id,
+                                                        partner_id,
+                                                        taxable,
+                                                        gst_rate,
+                                                        filling_date,
+                                                        purchase_desc,
+                                                        created_date) 
+                                                        values ('$pur_inc_no',
+                                                        '$pur_vendor_id',
+                                                        '$pur_partner_id',
+                                                        '$pur_taxable',
+                                                        '$pur_gst_rate',
+                                                        '$pur_date',
+                                                        'pur_desc',
+                                                        '$today')";
+    $run_insert_pur_filling = mysqli_query($con, $insert_pur_filling);
+
+    if ($run_insert_pur_filling) {
+        echo "<div class='alert alert-success' role='alert' id='vendor_success'>
+        <strong>Done!</strong> Your Purchase is added successfully.
+      </div>";
+    } else {
+        echo "
+        <div class='alert alert-Danger' role='alert' id='vendor_failed'>
+        <strong>Error!</strong> Failed to add the Purchase try again.
+        </div>
+        ";
+    }
+}

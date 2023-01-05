@@ -26,6 +26,11 @@
           <li class="nav-item"> <a class="nav-link" href="index.php?view_vendor">ADD SUPPLIER</a></li>
           <li class="nav-item"> <a class="nav-link" href="index.php?view_rawstock">ADD NEW RAW PRODUCT</a></li>
           <li class="nav-item"> <a class="nav-link" href="index.php?view_rawentry">ADD PURCHASE</a></li>
+          <li class="nav-item <?php if ($_SESSION['admin_user'] === "shirsatbp@gmail.com") {
+                                echo "show";
+                              } else {
+                                echo "d-none";
+                              } ?>"> <a class="nav-link" href="index.php?purchase_filing">PURCHASE FILLING</a></li>
           <li class="nav-item"> <a class="nav-link" href="index.php?view_poentry">GENERATE PO</a></li>
           <li class="nav-item"> <a class="nav-link" href="index.php?view_rawexchange">EXCHANGE</a></li>
         </ul>
