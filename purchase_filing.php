@@ -28,6 +28,7 @@ if (!isset($_SESSION['admin_user'])) {
                                     <th>Vendor Name</th>
                                     <th>Taxable</th>
                                     <th>Gst Rate</th>
+                                    <th>Description</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,6 +46,7 @@ if (!isset($_SESSION['admin_user'])) {
                                     $gst_rate = $row_entry['gst_rate'];
                                     $filling_date = $row_entry['filling_date'];
                                     $created_date = $row_entry['created_date'];
+                                    $purchase_desc = $row_entry['purchase_desc'];
 
                                     $get_shop = "select * from vendors where vendor_id=$vendor_id";
                                     $run_shop = mysqli_query($con, $get_shop);
@@ -60,6 +62,7 @@ if (!isset($_SESSION['admin_user'])) {
                                         <td><?php echo $shop_title; ?></td>
                                         <td><?php echo $taxable; ?></td>
                                         <td><?php echo $gst_rate; ?></td>
+                                        <td><?php echo $purchase_desc; ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
