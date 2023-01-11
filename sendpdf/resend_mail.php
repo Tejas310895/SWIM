@@ -24,6 +24,7 @@ if (isset($_GET['mail_sent'])) {
     $mail_inc_no = $row_inc_ref['po_number'];
     $vendor_id = $row_inc_ref['vendor_id'];
     $customer_email = $row_inc_ref['vendor_email'];
+    $str_arr = explode(",", $customer_email);
 
     $get_customer_email = "select * from vendors where vendor_id='$vendor_id'";
     $run_customer_email = mysqli_query($connect, $get_customer_email);
@@ -498,8 +499,10 @@ if (isset($_GET['mail_sent'])) {
     $mail->SMTPSecure = 'ssl';                            //Sets connection prefix. Options are "", "ssl" or "tls"
     $mail->SetFrom("swrapfoil@gmail.com", "Silver Wrap");
     $mail->addCC('shirsatbp@gmail.com');
-    $mail->AddReplyTo("swrapfoil@gmail.com", "Silver Wrap");        //Sets the From name of the message
-    $mail->AddAddress($customer_email, 'Invoice');        //Adds a "To" address
+    $mail->AddReplyTo("swrapfoil@gmail.com", "Silver Wrap");
+    for ($i = 0; $i < count($str_arr); $i++) {
+        $mail->AddAddress($str_arr[$i], 'Invoice');        //Adds a "To" address
+    }
     // $mail->WordWrap = 50;							//Sets word wrapping on the body of the message to a given number of characters
     $mail->IsHTML(true);
     $mail->AddAttachment($file_name);
