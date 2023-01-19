@@ -11,6 +11,8 @@ $(document).ready(function () {
         var vendor_email = $("#vendor_email").val();
         var vendor_contact = $("#vendor_contact").val();
         var vendor_status = $("#vendor_status").val();
+        var shop_address = $("#shop_address").val();
+        var shop_state_code = $("#shop_state_code").val();
 
         $.ajax({
             type: "POST",
@@ -23,7 +25,9 @@ $(document).ready(function () {
                 "vendor_gstn": vendor_gstn,
                 "vendor_email": vendor_email,
                 "vendor_contact": vendor_contact,
-                "vendor_status": vendor_status
+                "vendor_status": vendor_status,
+                "shop_address": shop_address,
+                "shop_state_code": shop_state_code
             },
             success: function (response) {
                 $('#vendor_alerts').html(response);

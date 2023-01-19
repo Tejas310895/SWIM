@@ -9,6 +9,8 @@ if (isset($_POST['add_vendor'])) {
     $vendor_email = $_POST['vendor_email'];
     $vendor_contact = $_POST['vendor_contact'];
     $vendor_status = $_POST['vendor_status'];
+    $shop_address = $_POST['shop_address'];
+    $shop_state_code = $_POST['shop_state_code'];
 
     date_default_timezone_set('Asia/Kolkata');
 
@@ -19,6 +21,8 @@ if (isset($_POST['add_vendor'])) {
                                            vendor_gstn,
                                            vendor_email,
                                            vendor_contact,
+                                           vendor_address,
+                                           vendor_state_code,
                                            vendor_status,
                                            vendor_created_at,
                                            vendor_updated_at)
@@ -28,6 +32,8 @@ if (isset($_POST['add_vendor'])) {
                                             '$vendor_gstn',
                                             '$vendor_email',
                                             '$vendor_contact',
+                                            '$shop_address',
+                                            '$shop_state_code',
                                             '$vendor_status',
                                             '$today',
                                             '$today'
