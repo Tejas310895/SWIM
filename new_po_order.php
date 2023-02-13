@@ -29,7 +29,7 @@
         <div class="col-4">
             <div class="form-group">
                 <label>Supplier Email</label>
-                <input type="email" class="form-control" name="vendor_email" id="vendor_email" aria-describedby="" required>
+                <input type="text" class="form-control" name="vendor_email" id="vendor_email" aria-describedby="" required>
             </div>
         </div>
         <div class="col-4">
