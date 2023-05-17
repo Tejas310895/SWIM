@@ -92,9 +92,9 @@ if (isset($_GET['print_id'])) {
       window.print();
     }
 
-    // window.onafterprint = function() {
-    //   window.location = 'index.php?view_manufacturing';
-    // }
+    window.onafterprint = function() {
+      window.location = 'index.php?view_manufacturing';
+    }
   </script>
   <script>
     document.addEventListener("DOMContentLoaded", function(event) {
