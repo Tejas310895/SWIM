@@ -29,6 +29,12 @@ include("includes/db.php");
     <link rel="shortcut icon" href="assets/images/favicon.png" />
     <script src="jquery/dist/jquery.min.js"></script>
     <style>
+        *{
+            background-image: url("images/background.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
         .login-card {
             width: 500px;
             height: 500px;
@@ -51,11 +57,6 @@ include("includes/db.php");
     </style>
   </head>
   <body>
-  <div style="position: fixed; z-index: -99; width: 100%; height: 100%">
-    <video autoplay muted loop id="myVideo">
-    <source src="assets/videos/back.mp4" type="video/mp4">
-    </video>
-    </div>
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-sm-12 mt-5 login-card">

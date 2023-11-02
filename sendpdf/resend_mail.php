@@ -14,8 +14,13 @@ if (isset($_GET['mail_sent'])) {
     // $customer_email = 'tshirsat700@gmail.com';
     $message = '';
 
+    if ($_SERVER['HTTP_HOST'] == 'localhost') {
+        $connect = mysqli_connect('localhost', 'root', '', 'swaf');
+    } else {
+        $connect = mysqli_connect('localhost', 'u708087849_swaf', 'Silverwrap@11', 'u708087849_swaf');
+    }
     // $connect = mysqli_connect('localhost:3308', 'root', '', 'swaf');
-    $connect = mysqli_connect('localhost', 'u708087849_swaf', 'Silverwrap@11', 'u708087849_swaf');
+    // $connect = mysqli_connect('localhost', 'u708087849_swaf', 'Silverwrap@11', 'u708087849_swaf');
 
     $get_inc_ref = "select * from po_entries where po_number='$mail_inc_id'";
     $run_inc_ref = mysqli_query($connect, $get_inc_ref);
