@@ -506,7 +506,7 @@ if (isset($_GET['mail_sent'])) {
     $mail->addCC('shirsatbp@gmail.com');
     $mail->AddReplyTo("swrapfoil@gmail.com", "Silver Wrap");
     for ($i = 0; $i < count($str_arr); $i++) {
-        $mail->AddAddress($str_arr[$i], 'Invoice');        //Adds a "To" address
+        $mail->AddAddress('shirsatbp@gmail.com', 'Invoice');        //Adds a "To" address
     }
     // $mail->WordWrap = 50;							//Sets word wrapping on the body of the message to a given number of characters
     $mail->IsHTML(true);

@@ -10,7 +10,7 @@
 <section class="section">
     <div class="card">
         <div class="card-body">
-            <table class='table table-striped' id="table1">
+            <table class='table table-striped' id="example">
                 <thead>
                     <tr class="text-center">
                         <th>Date</th>
@@ -35,7 +35,13 @@
                         $row_vendor = mysqli_fetch_array($run_vendor);
                     ?>
                         <tr>
-                            <td><?php echo date('d-M-y', strtotime($row_purchase_entries['po_date'])); ?></td>
+                            <td>
+<a href="sendpdf/resend_mail.php?mail_sent=<?php echo $row_purchase_entries['po_number']; ?>" type="button" class="btn btn-primary <?php if ($row_purchase_entries['po_delivery_status'] === 'shipped' || $row_purchase_entries['po_delivery_status'] === 'cancelled') {
+                                                                                                                                                                            echo "d-none";
+                                                                                                                                                                        } ?>" title="Resend Mail">
+                                        <i class="mdi mdi-email-outline"></i>
+                                    </a>
+</td>
                             <td class="text-uppercase"><?php echo $row_vendor['shop_title']; ?></td>
                             <td><?php echo $row_purchase_entries['vendor_email']; ?></td>
                             <td><?php echo date('d-M-y', strtotime($row_purchase_entries['po_shcedule'])); ?></td>
