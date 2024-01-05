@@ -1,4 +1,4 @@
-<?php
+no<?php
 
 include("../includes/db.php");
 
@@ -326,7 +326,7 @@ if (isset($_POST['invoice_pre'])) {
 
     $today = date("d-m-Y");
 
-    $raw_fin_year = (date("y")) . "-" . (date("y")+1);
+    $raw_fin_year = (date("y")+1) . "-" . (date("y"));
 
     $get_partner_count = "SELECT * FROM invoice where LEFT(invoice_no, 2)='$invoice_pre' and MID(invoice_no, 3, 5)='$raw_fin_year' order by RIGHT(invoice_no, 3) desc limit 1";
     $run_partner_count = mysqli_query($con, $get_partner_count);
@@ -342,7 +342,7 @@ if (isset($_POST['invoice_pre'])) {
         $invoice_no_aft = 000;
     }
 
-    $aftyear = $in_year - 1;
+    $aftyear = $in_year + 1;
 
     // $get_fin_year = "select  MID(invoice_no, 3, 5) as demo from invoice limit 1";
     // $run_fin_year = mysqli_query($con,$get_fin_year);
