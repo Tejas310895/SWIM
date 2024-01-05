@@ -322,11 +322,11 @@ if (isset($_POST['invoice_pre'])) {
 
     date_default_timezone_set('Asia/Kolkata');
 
-    $in_year = date("y");
+    $in_year = date("y") - 1;
 
     $today = date("d-m-Y");
 
-    $raw_fin_year = (date("y")-1) . "-" . (date("y")-2);
+    $raw_fin_year = (date("y") - 2) . "-" . (date("y") - 1);
 
     $get_partner_count = "SELECT * FROM invoice where LEFT(invoice_no, 2)='$invoice_pre' and MID(invoice_no, 3, 5)='$raw_fin_year' order by RIGHT(invoice_no, 3) desc limit 1";
     $run_partner_count = mysqli_query($con, $get_partner_count);
