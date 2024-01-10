@@ -366,3 +366,19 @@ if (isset($_POST['invoice_pre'])) {
         echo "error";
     }
 }
+if (isset($_POST['pay_submit'])) {
+    $invoice_id = $_POST['invoice_id'];
+    $pay_date = $_POST['pay_date'];
+    $pay_type = $_POST['pay_type'];
+    $pay_amt = $_POST['pay_amt'];
+    $invoice_update = "update invoice set pay_date='$pay_date',pay_type='$pay_type',pay_amt='$pay_amt' where invoice_id='$invoice_id'";
+    $run_invoice_update = mysqli_query($con, $invoice_update);
+
+    if ($run_invoice_update) {
+        echo "<script>alert('Invoice entry successfull')</script>";
+        echo "<script>window.history.back();</script>";
+    } else {
+        echo "<script>alert('Invoice entry failed')</script>";
+        echo "<script>window.history.back();</script>";
+    }
+}
