@@ -36,8 +36,9 @@ if (!isset($_SESSION['admin_user'])) {
                             </thead>
                             <tbody>
                                 <?php
-
-                                $get_invoice_entries = "select * from invoice order by invoice_id desc limit 20";
+                                $params = 'i.invoice_id as invoice_id,i.invoice_no as invoice_no,i.partner_id as partner_id,i.invoice_date as invoice_date,i.billed_title as billed_title,i.pay_date as pay_date,i.pay_type as pay_type,i.pay_amt as pay_amt';
+                                $params .= ',sum((ip.unit_rate*ip.carton_qty) + ((ip.unit_rate*ip.carton_qty)*(ip.gst_rate/100))) as invoice_tax_total,sum(ip.unit_rate*ip.carton_qty) as invoice_total';
+                                $get_invoice_entries = "select $params from invoice i inner join invoice_products ip on i.invoice_no=ip.invoice_no group by ip.invoice_no order by invoice_id desc";
                                 $run_invoice_entries = mysqli_query($con, $get_invoice_entries);
                                 while ($row__invoice_entries = mysqli_fetch_array($run_invoice_entries)) {
 
@@ -56,23 +57,23 @@ if (!isset($_SESSION['admin_user'])) {
 
                                     $partner_title = $row_partner['partner_title'];
 
-                                    $invoice_total = 0;
-                                    $invoice_tax_total = 0;
+                                    $invoice_total = $row__invoice_entries['invoice_total'];
+                                    $invoice_tax_total = $row__invoice_entries['invoice_tax_total'];
 
-                                    $get_invoice_amount = "select * from invoice_products where invoice_no='$invoice_no'";
-                                    $run_invoice_amount = mysqli_query($con, $get_invoice_amount);
-                                    while ($row_invoice_amount = mysqli_fetch_array($run_invoice_amount)) {
-                                        $unit_rate = $row_invoice_amount['unit_rate'];
-                                        $carton_qty = $row_invoice_amount['carton_qty'];
-                                        $gst_rate = $row_invoice_amount['gst_rate'];
+                                    // $get_invoice_amount = "select * from invoice_products where invoice_no='$invoice_no'";
+                                    // $run_invoice_amount = mysqli_query($con, $get_invoice_amount);
+                                    // while ($row_invoice_amount = mysqli_fetch_array($run_invoice_amount)) {
+                                    //     $unit_rate = $row_invoice_amount['unit_rate'];
+                                    //     $carton_qty = $row_invoice_amount['carton_qty'];
+                                    //     $gst_rate = $row_invoice_amount['gst_rate'];
 
-                                        @$invoice_amount = $unit_rate * $carton_qty;
-                                        $tax_total = $invoice_amount * ($gst_rate / 100);
-                                        $invoice_tax = $invoice_amount + $tax_total;
+                                    //     @$invoice_amount = $unit_rate * $carton_qty;
+                                    //     $tax_total = $invoice_amount * ($gst_rate / 100);
+                                    //     $invoice_tax = $invoice_amount + $tax_total;
 
-                                        $invoice_total += $invoice_amount;
-                                        $invoice_tax_total += $invoice_tax;
-                                    }
+                                    //     $invoice_total += $invoice_amount;
+                                    //      $invoice_tax_total += $invoice_tax;
+                                    // }
                                 ?>
                                     <tr>
                                         <td><?php echo $invoice_id; ?></td>
