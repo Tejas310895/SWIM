@@ -37,7 +37,7 @@ if (!isset($_SESSION['admin_user'])) {
                             <tbody>
                                 <?php
 
-                                $get_invoice_entries = "select * from invoice order by invoice_id desc";
+                                $get_invoice_entries = "select * from invoice order by invoice_id desc limit 20";
                                 $run_invoice_entries = mysqli_query($con, $get_invoice_entries);
                                 while ($row__invoice_entries = mysqli_fetch_array($run_invoice_entries)) {
 
@@ -59,7 +59,7 @@ if (!isset($_SESSION['admin_user'])) {
                                     $invoice_total = 0;
                                     $invoice_tax_total = 0;
 
-                                    $get_invoice_amount = "select * from invoice_products where invoice_no='$invoice_no' limit 20";
+                                    $get_invoice_amount = "select * from invoice_products where invoice_no='$invoice_no'";
                                     $run_invoice_amount = mysqli_query($con, $get_invoice_amount);
                                     while ($row_invoice_amount = mysqli_fetch_array($run_invoice_amount)) {
                                         $unit_rate = $row_invoice_amount['unit_rate'];
