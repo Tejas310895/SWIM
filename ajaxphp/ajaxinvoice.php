@@ -333,7 +333,7 @@ if (isset($_POST['invoice_pre'])) {
     $row_partner_count = mysqli_fetch_array($run_partner_count);
     $count_fin_yer = mysqli_num_rows($run_partner_count);
 
-    $invoice_no_bef = $row_partner_count['invoice_no'];
+    $invoice_no_bef = (!empty($row_partner_count)) ? $row_partner_count['invoice_no'] : 0;
 
     if ($count_fin_yer > 0) {
 

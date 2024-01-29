@@ -280,6 +280,7 @@ if (!isset($_SESSION['admin_user'])) {
                                     <option disabled selected value>GST TYPE</option>
                                     <option value="STA_TAX">STATE TAX</option>
                                     <option value="CEN_TAX">CENTER TAX</option>
+                                    <option value="NIL">NIL</option>
                                 </select>
                                 <div class="input-group-addon mx-3 mt-1">
                                     <a href="javascript:void(0)" class="btn btn-success addMore"><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a>
@@ -329,6 +330,7 @@ if (!isset($_SESSION['admin_user'])) {
                         <option disabled selected value>GST TYPE</option>
                         <option value="STA_TAX">STATE TAX</option>
                         <option value="CEN_TAX">CENTER TAX</option>
+                        <option value="NIL">NIL</option>
                     </select>
                     <div class="input-group-addon mx-4 mt-1">
                         <a href="javascript:void(0)" class="btn btn-danger remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>X</a>

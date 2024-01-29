@@ -82,9 +82,9 @@ if (!isset($_SESSION['admin_user'])) {
                                         <td><?php echo $billed_title; ?></td>
                                         <td><?php echo $partner_title; ?></td>
                                         <td><?php echo round($invoice_total, 2); ?></td>
-                                        <td><?php echo round($invoice_tax_total, 2); ?></td>
-                                        <td><?php echo round($invoice_tax_total, 2) - $pay_amt; ?></td>
-                                        <td><?php echo ((round($invoice_tax_total, 2) - $pay_amt) == 0) ? 'Paid ' . date('d-m-y', strtotime($pay_date)) : (((round($invoice_tax_total, 2) - $pay_amt) > 0 && (round($invoice_tax_total, 2) - $pay_amt) < round($invoice_tax_total, 2)) ? 'Partial Paid ' . date('d-m-y', strtotime($pay_date)) : 'Pending'); ?></td>
+                                        <td><?php echo ($partner_id == 3) ? ($invoice_total - $pay_amt) : (round($invoice_tax_total, 2)); ?></td>
+                                        <td><?php echo ($partner_id == 3) ? ($invoice_total - $pay_amt) : (round($invoice_tax_total, 2) - $pay_amt); ?></td>
+                                        <td><?php echo ($partner_id == 3) ? ($invoice_total - $pay_amt) : (((round($invoice_tax_total, 2) - $pay_amt) == 0) ? 'Paid ' . date('d-m-y', strtotime($pay_date)) : (((round($invoice_tax_total, 2) - $pay_amt) > 0 && (round($invoice_tax_total, 2) - $pay_amt) < round($invoice_tax_total, 2)) ? 'Partial Paid ' . date('d-m-y', strtotime($pay_date)) : 'Pending')); ?></td>
                                         <td><button type="button" class="btn btn-block py-3 btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $invoice_id; ?>">
                                                 <i class="fa fa-pen"></i>
                                             </button></td>

@@ -318,6 +318,10 @@ if (isset($_GET['invoice_no'])) {
                                     $cgst_tax_hsn = $dis_gst_rate / 2;
                                     $sgst_tax_hsn = $dis_gst_rate / 2;
                                     $igst_tax_hsn = 0;
+                                } elseif ($dis_gst_type === 'NIL') {
+                                    $cgst_tax_hsn = 0;
+                                    $sgst_tax_hsn = 0;
+                                    $igst_tax_hsn = 0;
                                 } else {
                                     $cgst_tax_hsn = 0;
                                     $sgst_tax_hsn = 0;
@@ -346,6 +350,10 @@ if (isset($_GET['invoice_no'])) {
                                     if ($gst_type_hsn === 'STA_TAX') {
                                         $cgst_amount_hsn += $taxable_amount_hsn * (($gst_rate_hsn / 2) / 100);
                                         $sgst_amount_hsn += $taxable_amount_hsn * (($gst_rate_hsn / 2) / 100);
+                                        $igst_amount_hsn += 0;
+                                    } elseif ($gst_type_hsn === 'NIL') {
+                                        $cgst_amount_hsn += 0;
+                                        $sgst_amount_hsn += 0;
                                         $igst_amount_hsn += 0;
                                     } else {
                                         $cgst_amount_hsn += 0;
@@ -422,6 +430,10 @@ if (isset($_GET['invoice_no'])) {
                                 $cgst_tax_hsn_ex = $dis_gst_rate_ex / 2;
                                 $sgst_tax_hsn_ex = $dis_gst_rate_ex / 2;
                                 $igst_tax_hsn_ex = 0;
+                            } elseif ($gst_type_hsn === 'NIL') {
+                                $cgst_amount_hsn += 0;
+                                $sgst_amount_hsn += 0;
+                                $igst_amount_hsn += 0;
                             } else {
                                 $cgst_tax_hsn_ex = 0;
                                 $sgst_tax_hsn_ex = 0;
@@ -451,6 +463,10 @@ if (isset($_GET['invoice_no'])) {
                                     $cgst_amount_hsn_ex += $taxable_amount_hsn_ex * (($gst_rate_hsn_ex / 2) / 100);
                                     $sgst_amount_hsn_ex += $taxable_amount_hsn_ex * (($gst_rate_hsn_ex / 2) / 100);
                                     $igst_amount_hsn_ex += 0;
+                                } elseif ($gst_type_hsn === 'NIL') {
+                                    $cgst_amount_hsn += 0;
+                                    $sgst_amount_hsn += 0;
+                                    $igst_amount_hsn += 0;
                                 } else {
                                     $cgst_amount_hsn_ex += 0;
                                     $sgst_amount_hsn_ex += 0;
@@ -801,6 +817,10 @@ if (isset($_GET['invoice_no'])) {
                                         $cgst_tax_hsn = $dis_gst_rate / 2;
                                         $sgst_tax_hsn = $dis_gst_rate / 2;
                                         $igst_tax_hsn = 0;
+                                    } elseif ($gst_type_hsn === 'NIL') {
+                                        $cgst_amount_hsn += 0;
+                                        $sgst_amount_hsn += 0;
+                                        $igst_amount_hsn += 0;
                                     } else {
                                         $cgst_tax_hsn = 0;
                                         $sgst_tax_hsn = 0;
@@ -829,6 +849,10 @@ if (isset($_GET['invoice_no'])) {
                                         if ($gst_type_hsn === 'STA_TAX') {
                                             $cgst_amount_hsn += $taxable_amount_hsn * (($gst_rate_hsn / 2) / 100);
                                             $sgst_amount_hsn += $taxable_amount_hsn * (($gst_rate_hsn / 2) / 100);
+                                            $igst_amount_hsn += 0;
+                                        } elseif ($gst_type_hsn === 'NIL') {
+                                            $cgst_amount_hsn += 0;
+                                            $sgst_amount_hsn += 0;
                                             $igst_amount_hsn += 0;
                                         } else {
                                             $cgst_amount_hsn += 0;
@@ -905,6 +929,10 @@ if (isset($_GET['invoice_no'])) {
                                     $cgst_tax_hsn_ex = $dis_gst_rate_ex / 2;
                                     $sgst_tax_hsn_ex = $dis_gst_rate_ex / 2;
                                     $igst_tax_hsn_ex = 0;
+                                } elseif ($gst_type_hsn === 'NIL') {
+                                    $cgst_amount_hsn += 0;
+                                    $sgst_amount_hsn += 0;
+                                    $igst_amount_hsn += 0;
                                 } else {
                                     $cgst_tax_hsn_ex = 0;
                                     $sgst_tax_hsn_ex = 0;
@@ -934,6 +962,10 @@ if (isset($_GET['invoice_no'])) {
                                         $cgst_amount_hsn_ex += $taxable_amount_hsn_ex * (($gst_rate_hsn_ex / 2) / 100);
                                         $sgst_amount_hsn_ex += $taxable_amount_hsn_ex * (($gst_rate_hsn_ex / 2) / 100);
                                         $igst_amount_hsn_ex += 0;
+                                    } elseif ($gst_type_hsn === 'NIL') {
+                                        $cgst_amount_hsn += 0;
+                                        $sgst_amount_hsn += 0;
+                                        $igst_amount_hsn += 0;
                                     } else {
                                         $cgst_amount_hsn_ex += 0;
                                         $sgst_amount_hsn_ex += 0;
@@ -1240,6 +1272,10 @@ if (isset($_GET['invoice_no'])) {
                                             $cgst_tax_hsn = $dis_gst_rate / 2;
                                             $sgst_tax_hsn = $dis_gst_rate / 2;
                                             $igst_tax_hsn = 0;
+                                        } elseif ($gst_type_hsn === 'NIL') {
+                                            $cgst_amount_hsn += 0;
+                                            $sgst_amount_hsn += 0;
+                                            $igst_amount_hsn += 0;
                                         } else {
                                             $cgst_tax_hsn = 0;
                                             $sgst_tax_hsn = 0;
@@ -1268,6 +1304,10 @@ if (isset($_GET['invoice_no'])) {
                                             if ($gst_type_hsn === 'STA_TAX') {
                                                 $cgst_amount_hsn += $taxable_amount_hsn * (($gst_rate_hsn / 2) / 100);
                                                 $sgst_amount_hsn += $taxable_amount_hsn * (($gst_rate_hsn / 2) / 100);
+                                                $igst_amount_hsn += 0;
+                                            } elseif ($gst_type_hsn === 'NIL') {
+                                                $cgst_amount_hsn += 0;
+                                                $sgst_amount_hsn += 0;
                                                 $igst_amount_hsn += 0;
                                             } else {
                                                 $cgst_amount_hsn += 0;
@@ -1344,6 +1384,10 @@ if (isset($_GET['invoice_no'])) {
                                         $cgst_tax_hsn_ex = $dis_gst_rate_ex / 2;
                                         $sgst_tax_hsn_ex = $dis_gst_rate_ex / 2;
                                         $igst_tax_hsn_ex = 0;
+                                    } elseif ($gst_type_hsn === 'NIL') {
+                                        $cgst_amount_hsn += 0;
+                                        $sgst_amount_hsn += 0;
+                                        $igst_amount_hsn += 0;
                                     } else {
                                         $cgst_tax_hsn_ex = 0;
                                         $sgst_tax_hsn_ex = 0;
@@ -1373,6 +1417,10 @@ if (isset($_GET['invoice_no'])) {
                                             $cgst_amount_hsn_ex += $taxable_amount_hsn_ex * (($gst_rate_hsn_ex / 2) / 100);
                                             $sgst_amount_hsn_ex += $taxable_amount_hsn_ex * (($gst_rate_hsn_ex / 2) / 100);
                                             $igst_amount_hsn_ex += 0;
+                                        } elseif ($gst_type_hsn === 'NIL') {
+                                            $cgst_amount_hsn += 0;
+                                            $sgst_amount_hsn += 0;
+                                            $igst_amount_hsn += 0;
                                         } else {
                                             $cgst_amount_hsn_ex += 0;
                                             $sgst_amount_hsn_ex += 0;
