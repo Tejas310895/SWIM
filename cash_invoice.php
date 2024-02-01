@@ -106,7 +106,7 @@ if (isset($_GET['invoice_no'])) {
             <div class="row">
                 <div class="col-9 px-0" style="border:1px solid #000;">
                     <h4 class="text-center p-2 mb-0">
-                        CASH MEMO
+                        MEMO
                     </h4>
                 </div>
                 <div class="col-3 px-0" style="border:1px solid #000;">
@@ -123,8 +123,8 @@ if (isset($_GET['invoice_no'])) {
                 </div>
                 <div class="col-6 pt-2 mb-0" style="border:1px solid #000;">
                     <h5>GSTIN Number : <?php echo $partner_gst; ?></h5>
-                    <h5>Invoice Number : <?php echo $invoice_no; ?></h5>
-                    <h5>Invoice Date : <?php echo date("d-M-Y", strtotime($invoice_date)); ?></h5>
+                    <h5>Challan Number : <?php echo $invoice_no; ?></h5>
+                    <h5>Challan Date : <?php echo date("d-M-Y", strtotime($invoice_date)); ?></h5>
                     <h5 class="mb-0 text-uppercase">
                         State: <?php echo $partner_state; ?>
 
