@@ -242,6 +242,10 @@ if (!isset($_SESSION['admin_user'])) {
 
             include("new_purchase_filing.php");
           }
+          if (isset($_GET['update_paid'])) {
+
+            include("update_paid.php");
+          }
 
           ?>
           <!-- content-wrapper ends -->

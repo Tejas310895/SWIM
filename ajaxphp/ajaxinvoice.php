@@ -376,9 +376,55 @@ if (isset($_POST['pay_submit'])) {
 
     if ($run_invoice_update) {
         echo "<script>alert('Invoice entry successfull')</script>";
-        echo "<script>window.history.back();</script>";
+        echo "<script>window.open('../index.php?invoice_bulk_entries','_self')</script>";
     } else {
         echo "<script>alert('Invoice entry failed')</script>";
-        echo "<script>window.history.back();</script>";
+        echo "<script>window.open('../index.php?invoice_bulk_entries','_self')</script>";
     }
+}
+
+
+if (isset($_POST['datatable'])) {
+    $params = 'i.invoice_id as invoice_id,i.invoice_no as invoice_no,i.partner_id as partner_id,i.invoice_date as invoice_date,i.billed_title as billed_title,i.pay_date as pay_date,i.pay_type as pay_type,i.pay_amt as pay_amt';
+    $params .= ',sum((ip.unit_rate*ip.carton_qty) + ((ip.unit_rate*ip.carton_qty)*(ip.gst_rate/100))) as invoice_tax_total,sum(ip.unit_rate*ip.carton_qty) as invoice_total';
+    $get_invoice_entries = "select $params from invoice i inner join invoice_products ip on i.invoice_no=ip.invoice_no group by ip.invoice_no order by invoice_id desc";
+    $run_invoice_entries = mysqli_query($con, $get_invoice_entries);
+    $data = [];
+    while ($row__invoice_entries = mysqli_fetch_array($run_invoice_entries)) {
+
+        $invoice_id = $row__invoice_entries['invoice_id'];
+        $invoice_no = $row__invoice_entries['invoice_no'];
+        $partner_id = $row__invoice_entries['partner_id'];
+        $invoice_date = $row__invoice_entries['invoice_date'];
+        $billed_title = $row__invoice_entries['billed_title'];
+        $pay_date = $row__invoice_entries['pay_date'];
+        $pay_type = $row__invoice_entries['pay_type'];
+        $pay_amt = $row__invoice_entries['pay_amt'];
+
+        $get_partner = "select * from partners where partner_id='$partner_id'";
+        $run_partner = mysqli_query($con, $get_partner);
+        $row_partner = mysqli_fetch_array($run_partner);
+
+        $partner_title = $row_partner['partner_title'];
+
+        $invoice_total = $row__invoice_entries['invoice_total'];
+        $invoice_tax_total = $row__invoice_entries['invoice_tax_total'];
+        $action_str = '<a class="btn btn-primary" href="index.php?update_paid=' . $invoice_id . '"><i class="fa fa-pen"></i></a>';
+        $temp_data = [
+            'inc_id' => $invoice_id,
+            'date' => date("d-M-Y", strtotime($invoice_date)),
+            'inc_no' => $invoice_no,
+            'billed_to' => $billed_title,
+            'comp_name' => $partner_title,
+            'taxa_amt' => round($invoice_total, 2),
+            'tot_amt' => ($partner_id == 3) ? ($invoice_total - $pay_amt) : (round($invoice_tax_total, 2)),
+            'balance' => ($partner_id == 3) ? ($invoice_total - $pay_amt) : (round($invoice_tax_total, 2) - $pay_amt),
+            'status' => ($partner_id == 3) ? ($invoice_total - $pay_amt) : (((round($invoice_tax_total, 2) - $pay_amt) == 0) ? 'Paid ' . date('d-m-y', strtotime($pay_date)) : (((round($invoice_tax_total, 2) - $pay_amt) > 0 && (round($invoice_tax_total, 2) - $pay_amt) < round($invoice_tax_total, 2)) ? 'Partial Paid ' . date('d-m-y', strtotime($pay_date)) : 'Pending')),
+            'action' => $action_str
+        ];
+
+        array_push($data, $temp_data);
+    }
+
+    echo json_encode($data);
 }
