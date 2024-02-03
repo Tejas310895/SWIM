@@ -30828,9 +30828,3 @@ div.tagsinput span.tag a {
   right: 0;
   margin: auto;
 }
-
-.form-inline {
-  display: flex;
-  flex-flow: row wrap;
-  flex-direction: column;
-}
