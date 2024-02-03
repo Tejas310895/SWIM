@@ -23,7 +23,7 @@ $(document).ready(function () {
 		"pagingType": "simple",
 		"responsive": true,
 		"autoWidth": true,
-		ajax: {
+		"ajax": {
 			url: 'ajaxphp/ajaxinvoice.php',
 			type: 'post',
 			data: { 'datatable': 'datatable' },
