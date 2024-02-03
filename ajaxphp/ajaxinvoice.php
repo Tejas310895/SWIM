@@ -428,3 +428,77 @@ if (isset($_POST['datatable'])) {
 
     echo json_encode($data);
 }
+
+if (isset($_POST['invoice_table'])) {
+
+    $get_invoice = "SELECT * FROM invoice order by invoice_id DESC";
+    $run_invoice = mysqli_query($con, $get_invoice);
+    $counter = 0;
+    $data = [];
+    while ($row_invoice = mysqli_fetch_array($run_invoice)) {
+
+        $counter = ++$counter;
+        $partner_id = $row_invoice['partner_id'];
+        $invoice_no = $row_invoice['invoice_no'];
+        $invoice_date = $row_invoice['invoice_date'];
+        $transporter_title = $row_invoice['transporter_title'];
+        $vehicle_no = $row_invoice['vehicle_no'];
+        $eway_no = $row_invoice['eway_no'];
+        $ship_date = $row_invoice['ship_date'];
+        $billed_title = $row_invoice['billed_title'];
+        $billed_contact = $row_invoice['billed_contact'];
+        $billed_address = $row_invoice['billed_address'];
+        $billed_state = $row_invoice['billed_state'];
+        $billed_state_code = $row_invoice['billed_state_code'];
+        $billed_gst = $row_invoice['billed_gst'];
+        $ship_title = $row_invoice['ship_title'];
+        $ship_contact = $row_invoice['ship_contact'];
+        $ship_address = $row_invoice['ship_address'];
+        $ship_state = $row_invoice['ship_state'];
+        $ship_state_code = $row_invoice['ship_state_code'];
+        $ship_gst = $row_invoice['ship_gst'];
+        $discount = $row_invoice['discount'];
+        $due_date = $row_invoice['due_date'];
+
+        $get_partner = "select * from partners where partner_id='$partner_id'";
+        $run_partner = mysqli_query($con, $get_partner);
+        $row_partner = mysqli_fetch_array($run_partner);
+
+        $partner_title = $row_partner['partner_title'];
+
+        $comp_det = 'Invoice Date : ' . date("d-M-Y", strtotime($invoice_date)) . '<br>'
+            . 'Invoice Number : ' . $invoice_no . '<br>'
+            . 'Company : ' . $partner_title . '<br>'
+            . 'Transporter Name : ' . $transporter_title . '<br>'
+            . 'Vehicle Number : ' . $vehicle_no . '<br>'
+            . 'E Way Bill : ' . $eway_no . '<br>'
+            . 'Shipping Date  ' . date("d-M-Y", strtotime($ship_date));
+        $custo_det = '<h5>Billed To</h5><br>'
+            . $billed_title . '<br>'
+            . $billed_contact . '<br>'
+            . $billed_address . '<br>'
+            . $billed_state
+            . '(State Code :' . $billed_state_code . ') <br>'
+            . $billed_gst . ' <br> <br>'
+            . '<h5>Shipped To</h5><br>'
+            . $ship_title . '<br>'
+            . $ship_contact . '<br>'
+            . $ship_address . '<br>'
+            . $ship_state
+            . '(State Code :' . $ship_state_code . ') <br>'
+            . $ship_gst;
+        $action_str = '<a href="' . (($partner_id == 3) ? 'cash_invoice.php' : 'print_invoice.php') . '?invoice_no=' . $invoice_no . '" target="_blank" class="btn btn-primary">Print</a><br>'
+            . '<a href="' . (($partner_id == 3) ? 'dwnch_invoice.php' : 'invoice.php') . '?invoice_no=' . $invoice_no . '" target="_blank" class="btn btn-primary mt-2">Download</a><br>'
+            . '<a href="delete_invoice.php?invoice_no=' . $invoice_no . '" class="btn btn-danger mt-2" onclick="return confirm(\'Are you sure?\')">Delete</a>';
+
+        $temp_data = [
+            'sl_no' => $counter++,
+            'company_details' => $comp_det,
+            'cust_details' => $custo_det,
+            'action' => $action_str
+        ];
+
+        array_push($data, $temp_data);
+    }
+    echo json_encode($data);
+}
