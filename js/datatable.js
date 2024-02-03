@@ -18,10 +18,6 @@ $(document).ready(function () {
 		]
 
 	});
-});
-
-$(document).ready(function () {
-	document.title = 'Summary';
 	$('#invoice_bulk').DataTable({
 		"paging": true,
 		"pagingType": "simple",
@@ -57,9 +53,6 @@ $(document).ready(function () {
 		// ] 
 
 	});
-});
-$(document).ready(function () {
-	document.title = 'Summary';
 	$('#invoice').DataTable({
 		"paging": true,
 		"pagingType": "simple",
