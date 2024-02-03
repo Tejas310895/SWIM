@@ -20,7 +20,14 @@ if (!isset($_SESSION['admin_user'])) {
                     </p>
                     <div class="table-responsive">
                         <table id="invoice" class="table table-striped table-bordered" cellspacing="0" width="100%">
-
+                            <thead>
+                                <tr>
+                                    <th>Sl.No</th>
+                                    <th>Company Details</th>
+                                    <th>Customer</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
                         </table>
                     </div>
                 </div>
