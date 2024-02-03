@@ -53,33 +53,4 @@ $(document).ready(function () {
 		// ] 
 
 	});
-	$('#invoice').DataTable({
-		"paging": true,
-		"pagingType": "simple",
-		"responsive": true,
-		"autoWidth": true,
-		ajax: {
-			url: 'ajaxphp/ajaxinvoice.php',
-			type: 'post',
-			data: { 'invoice_table': 'invoice_table' },
-			dataSrc: ''
-		},
-		columns: [
-			{ "data": "sl_no" },
-			{ "data": "company_details" },
-			{ "data": "cust_details" },
-			{ "data": "action" },
-		]
-		// "buttons": [
-		// 		{
-		// extend: 'excelHtml5',
-		// text: 'Excel',
-		// customize: function( xlsx ) {
-		//   var source = xlsx.xl['workbook.xml'].getElementsByTagName('sheet')[0];
-		//   source.setAttribute('name','New Name');
-		// 			}
-		// 		}
-		// ] 
-
-	});
 });
