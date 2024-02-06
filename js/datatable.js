@@ -23,7 +23,7 @@ $(document).ready(function () {
 		"pagingType": "simple",
 		"responsive": true,
 		"autoWidth": true,
-		"serverSide": true,
+		// "serverSide": true,
 		"ajax": {
 			url: 'ajaxphp/ajaxinvoice.php',
 			type: 'post',
@@ -59,7 +59,7 @@ $(document).ready(function () {
 		"pagingType": "simple",
 		"responsive": true,
 		"autoWidth": true,
-		"serverSide": true,
+		// "serverSide": true,
 		"ajax": {
 			url: 'ajaxphp/ajaxinvoice.php',
 			type: 'post',
