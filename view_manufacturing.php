@@ -64,7 +64,7 @@ if (!isset($_SESSION['admin_user'])) {
                                         <td><?php echo date("d-M-Y, H:i A", strtotime($manufacturing_created_at)); ?></td>
                                         <td><?php echo $product_name; ?></td>
                                         <td><?php echo $carton_title; ?></td>
-                                        <td><?php echo $manufacturing_carton_qty; ?></td>
+                                        <td><?php echo $carton_qty; ?></td>
                                         <td><?php echo $manufacturing_carton_qty; ?></td>
                                         <td> <a href="print_ready.php?print_id=<?php echo $print_id; ?>" class="btn btn-primary">Print</a> </td>
                                     </tr>
