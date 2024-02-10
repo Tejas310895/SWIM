@@ -57,13 +57,13 @@ if(!isset($_SESSION['admin_user'])){
                         $run_shop = mysqli_query($con,$get_shop);
                         $row_shop = mysqli_fetch_array($run_shop);
 
-                        $shop_title = $row_shop['shop_title'];
+                        @$shop_title = $row_shop['shop_title'];
 
                         $get_item = "select * from raw_items where item_id=$item_id";
                         $run_item = mysqli_query($con,$get_item);
                         $row_item = mysqli_fetch_array($run_item);
 
-                        $item_name = $row_item['item_name'];
+                        @$item_name = $row_item['item_name'];
                     
                     ?>
                     <tr>
